@@ -1,0 +1,61 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;700&display=swap');
+
+
+:root{
+   
+    --primary-100: #ffe5cc;
+    --primary-200: #ffcc99;
+    --primary-300: #ffb266;
+    --primary-400: #ff9933;
+    --primary-500: #ff7f00; /* default */
+    --primary-600: #cc6600;
+    --primary-700: #994c00;
+    --primary-800: #663300;
+    --primary-900: #331900;
+    --color-bianco: #fbf6f1;
+    --dark-gray: #8e8e8e;
+
+
+    --big-text: 20px; 
+    --medium-text : 15px;
+    --big-icon: 60px;
+}
+
+.aggiungiOmbra{
+    box-shadow: 5px 5px 43px 5px rgba(28,28,28,0.47) !important;
+}
+
+@media screen and (max-width: 1024px){      
+
+    :root{
+
+        --medium-text: 14px;
+        --big-text: 17px;
+        --big-icon: 55px;
+
+    }
+
+}
+
+@media screen and (max-width: 768px){      
+    
+    :root{
+    
+        --medium-text: 10px;
+        --big-text: 15px;
+        --big-icon: 40px;
+    
+    }
+
+}
+
+.dark-500-c{
+    color: var(--primary-900) !important;
+
+}
+
+.dark-500-b{
+    background-color: var(--primary-900) !important;
+}

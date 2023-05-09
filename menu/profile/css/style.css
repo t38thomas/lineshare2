@@ -1,0 +1,393 @@
+html{
+    background-color: var(--primary-700);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;700&display=swap');
+
+main{
+    display: flex;
+    
+}
+
+body{
+    font-family: 'Sora',sans-serif;
+}
+
+img {
+   user-select: none;
+   -moz-user-select: none;
+   -webkit-user-drag: none;
+   -webkit-user-select: none;
+   -ms-user-select: none;
+  }
+
+
+.BigContainerImg{
+    margin-top: 93px;
+    height: calc(100vh - 93px);
+    width: 100%;
+    display: flex;
+}
+.BigContainerImg .containerImg{
+
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    
+    display: flex;
+    transform: rotateX(180deg);
+
+}
+
+.BigContainerImg .containerImg img{
+    width: 100%;
+    height: 100%;
+    object-fit:cover;
+
+}
+
+.BigContainerCentro{
+    width: 100%;
+    margin-top: 93px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.containerFotoProfilo{
+    margin-top: 20px;
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.foto{
+    height: 200px;
+    width: 200px;
+    border-radius: 100%;
+    background-color: var(--primary-800);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: .25s;
+    border: 5px solid white;
+    user-select: none;
+}
+
+.fotoMessa{
+    height: 200px;
+    width: 200px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    border: 5px solid var(--color-bianco);
+    position: relative;
+    transition: .25s;
+}
+
+header .fotoMessa{
+    height: 30px;
+    width: 30px;
+    margin-right: 10px;
+    border: 3px solid var(--color-bianco);
+}
+
+.fotoMessa .foto{
+    height: 200px;
+    width: 200px;
+    background-color: transparent;
+    border-radius: 100%;
+    position: absolute;
+    border: 5px solid var(--color-bianco);
+    top: -5px;
+    left: -5px;
+    transition: .25s;
+    cursor: pointer;
+}
+
+.fotoMessa .foto i, .fotoMessa .foto p{
+    color: transparent;
+    transition: .25s;
+}
+
+.fotoMessa .foto:hover{
+    backdrop-filter: blur(2.5px);
+    background-color: transparent;
+    color: var(--color-bianco);
+}
+
+.fotoMessa .foto:hover i,.fotoMessa .foto:hover p{
+        color: var(--color-bianco);
+}
+
+.fotoMessa img{
+    width: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 100%;
+
+    object-fit: cover;
+}
+
+.foto:hover{
+    background-color: var(--primary-900);
+    
+}
+
+.foto i{
+    font-size: 40px;
+}
+
+.foto p{
+    margin-top: 20px;
+    text-align: center;
+    color: var(--color-bianco);
+}
+
+.nome{
+    margin-top: 20px;
+    font-size: 30px;
+    text-align: center;
+    color: var(--color-bianco);
+}
+
+.nome p{
+    text-align: center;
+}
+
+.container{
+    margin-top: 20px;
+    width: fit-content;
+    height: auto;
+
+}
+
+.container .item{
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 30px;
+}
+
+.container .sub-item{
+    background-color: var(--color-bianco);
+    height: 73px;
+    width: 596px;
+    display: flex;
+    border-radius: 20px;
+    border-top-left-radius: 0px;
+    font-size: 17px;
+    display: flex;
+    align-items: center;
+}
+
+.container .sub-item .label{
+    min-width: 100px;
+    width: 100px;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    background-color: var(--primary-700);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    height: 25px;
+    font-size: 15px;
+    margin-left: 10px;
+    color: var(--color-bianco);
+    transition: .25s;
+    position: absolute;
+    top: -30px;
+    left: -10px;
+    border: 5px solid var(--color-bianco);
+}
+
+.container .sub-item span{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.container .sub-item input{
+    outline: none;
+    border: none;
+    background-color: transparent;
+    font-family: 'Sora',sans-serif;
+    font-size: 17px;
+    font-weight: bold;
+    border: 3px solid transparent;
+    transition: .25s;
+    padding: 0 20px;
+    cursor: default;
+    width: 100%;
+    position: relative;
+   
+}
+
+.container .sub-item .modificabile{
+    cursor:text;
+}
+
+
+.container .sub-item .cambiaBtn{
+    min-width: 58px;
+    min-height: 58px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: var(--primary-400);
+    margin-right: 10px;
+    transition: .25s;
+    cursor: pointer;
+}
+
+.container .sub-item .cambiaBtn:hover{
+    min-width: 80px;
+}
+
+.sub-item .invalido{
+    background-color: var(--dark-gray) !important;
+    cursor: default;
+    pointer-events: none;
+}
+
+.confermaBtn{
+    background-color: var(--primary-300) !important;
+}
+
+.confermaBtn:hover{
+    background-color: var(--primary-400) !important;
+}
+
+.cancellaBtn{
+    background-color: var(--primary-600) !important;
+    margin-right: 10px !important;
+    opacity: 0;
+    pointer-events: none;
+    transition: .25s;
+}
+
+.container .sub-item .cancellaBtn span{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cancellaBtn:hover{
+    background-color: var(--primary-700) !important;
+
+}
+
+.item .visibile{
+    opacity: 1;
+    pointer-events: all;
+}
+
+.container .sub-item .cambiaBtn:hover{
+    background-color: var(--primary-500);
+}
+
+main .container .linea{
+    width: 360px !important;
+    transition: 2s;
+
+}
+
+.container .item:nth-last-child(1) .linea{
+    opacity: 0%;
+}
+
+.containerGuidatoreBtn{
+    margin-top: 45px;
+    width: 220px;
+    height: 70px;
+    border-radius: 50px;
+    background-color: var(--primary-800);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 5px solid var(--color-bianco);
+    cursor: pointer;
+    transition: background-color .25s, width .25s;
+}
+
+.containerGuidatoreBtn:hover{
+    background-color: var(--primary-900);
+    width: 250px;
+}
+
+.containerGuidatoreBtn p{
+    color: var(--color-bianco);
+    font-size: var(--big-text);
+}
+ 
+
+@media screen and (max-width: 768px){      
+
+    .container {
+        width: 80%;
+    }
+
+    .container .sub-item{
+        width: 90%;
+ 
+
+    }
+
+    .container .sub-item .cambiaBtn{
+        min-width: 48px;
+        min-height: 48px;
+        border-radius: 15px;
+        font-size: 15px;
+    }
+
+    .container .sub-item .cambiaBtn:hover{
+        min-width: 58px;
+    }
+
+  
+
+    .container .linea{
+        max-width: 240px;
+    }
+
+    .foto{
+        height: 150px !important;
+        width: 150px !important;
+    }
+
+    .foto i{
+        font-size: 30px;
+    }
+
+    .foto p{
+        font-size: 13px;
+    }
+
+    .fotoMessa{
+        width: 150px;
+        height: 150px;
+    }
+
+    .containerFotoProfilo{
+        margin-top: 0px;
+    }
+
+    
+
+    
+}

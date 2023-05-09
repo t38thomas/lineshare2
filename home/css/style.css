@@ -1,0 +1,255 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;700&display=swap');
+@import url(/lineshare/general/css/root.css);
+
+html{
+    background-color: var(--color-bianco);
+}
+
+main img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+
+
+body{
+    
+    font-family: "Sora",sans-serif;
+    background-color: var(--color-bianco);
+}
+
+.containerOnda{
+    height: 600vh;
+    width: 100%;
+}
+
+.containerCerca{
+    position: absolute;
+    width: 100%;
+    height: 75px;
+    bottom: 200px;
+    left: 50%;
+    translate: -50% 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.containerCerca .bigContainer{
+    position: relative;
+    width: 50%;
+    height: 100%;
+    margin-right: 180px;
+}
+
+.containerCerca .bigContainer form{
+    width: 100%;
+
+    display: flex;
+    justify-content: flex-end;
+    
+}
+
+.containerCerca .bigContainer form .input{
+    position: relative;
+    width: fit-content;
+    height: 100%;
+    background-color: rebeccapurple;
+}
+
+.containerCerca .bigContainer form .input i{
+    position: absolute;
+    left: 12.5px;
+    top: 50%;
+    translate: 0 -50%;
+    color: black;
+}
+
+.containerCerca .bigContainer form input{
+    outline: none;
+    height: 50px;
+    padding-left: 40px;
+}
+
+.containerCerca .bigContainer form input[type="submit"]{
+    padding-left: 0px;
+}
+
+
+.containerInfo{
+    
+    margin-top: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.containerItem{
+
+    width: 280px;
+    height: 250px;
+    aspect-ratio: 1/1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary-500);
+    border-radius: 30px;
+    color: var(--color-bianco) !important;
+    margin: 0 50px;
+    transition: margin .25s, padding .25s;
+
+}
+
+.containerItem .containerImg{
+    height: 30%;
+    width: 30%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerItem .containerImg i{
+    font-size: var(--big-icon);
+ 
+}
+
+.containerItem .titolo{
+
+    height: 10%;
+    width: 100%;
+    margin: 5px;
+    font-weight: bold; 
+    font-size: var(--big-text);
+}
+
+.containerItem .testo{
+
+    height: 60%;
+    width: 100%;
+    margin: 5px;
+    font-size: var(--medium-text);
+}
+
+.containerInfo span{
+    width: 2%;
+    height: 10px;
+}
+
+.containerWave{
+    display: flex;
+    flex-direction: column;
+}
+
+/* sezione 2 */
+.sezione-2{
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.sezione-2 .centro{    
+    width: 100%;
+    height: 600px;
+    background-color: var(--primary-500);
+}
+
+
+
+/* schermi piccoli */
+@media screen and (max-width: 1024px){      
+
+    :root{
+
+        --medium-text: 14px;
+        --big-text: 17px;
+        --big-icon: 55px;
+
+    }
+
+    .containerItem{
+        margin: 0 10px;
+         width: 250px;
+        height: 220px; 
+        padding: 20px;
+    }
+
+
+}
+
+/* tablet */
+@media screen and (max-width: 768px){      
+    
+
+
+:root{
+
+    --medium-text: 10px;
+    --big-text: 15px;
+    --big-icon: 40px;
+
+}
+
+.containerBig{
+    width: 100%;
+    height: auto;
+    overflow: auto;
+}
+
+.containerInfo{
+    width: fit-content
+}
+
+.containerItem{
+    margin: 5px 5px;
+    width: 200px;
+    height: 170px;
+    padding: 20px;
+    
+}
+
+.containerItem .containerImg{
+    height: 20%;
+    width: 20%;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerItem .titolo{
+
+    height: 20%;
+    width: 100%;
+    margin: 5px;
+    font-weight: bold; 
+    font-size: var(--big-text);
+}
+
+.containerItem .testo{
+
+    height: 70%;
+    width: 100%;
+    margin: 5px;
+    font-size: var(--medium-text);
+}
+
+}
+
+/* telefono */
+@media screen and (max-width: 480px){
+  
+
+  
+}

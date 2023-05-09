@@ -1,0 +1,462 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;700&display=swap');
+
+main{
+
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-bianco);
+
+}
+
+html{
+    background-color: var(--color-bianco);
+    font-family: 'Sora';
+}
+
+main .containerWave{
+    height: auto;
+    width: 100%;
+    position: absolute;
+    margin-top: 92px;
+}
+
+main .containerWave img{
+    object-fit: cover;
+    width: 100%;
+}
+
+.center{
+
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerCard{
+    width: 350px;
+    aspect-ratio: 4/5;
+    background-color: var(--primary-100);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 5px 5px 23px 5px rgba(28,28,28,0.27) !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.containerCard .containerGuidatore{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--primary-100);
+    padding-bottom: 20px;
+    border-radius: 20px;
+    
+}
+
+.containerCard .containerGuidatore .sinistra{
+    width: auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: baseline;
+}
+
+.containerCard .containerGuidatore .sinistra .containerFoto{
+    width: 95px;
+    border-radius: 100%;
+    aspect-ratio: 1/1;
+    background-color: var(--primary-300);
+    margin: 20px;
+    margin-bottom: 0;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 5px solid var(--primary-300);
+}
+
+.containerCard .containerGuidatore .sinistra .containerFoto img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+   
+}
+
+.containerCard .containerGuidatore .destra{
+    width: 100%;
+    height: 100%;
+}
+
+.containerCard .containerGuidatore .destra .nome{
+    font-size: 22px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-right: 20px;
+    margin-top: 10px;
+    color: var(--primary-900);
+}
+.containerCard .containerGuidatore .destra .nome i{
+    color:  var(--primary-300);
+}
+.containerCard .containerGuidatore .destra .stelle{
+    text-align: center;
+    position: absolute;
+    bottom: 20px;
+    z-index: 2;
+}
+
+.containerLinea{
+    width: 100%;
+    height: 3px;
+    display: flex;
+    justify-content: center;
+    margin: 5px 0;
+}
+
+.containerLinea .linea{
+
+    height: 3px;
+    width: 80%;
+    border-radius: 20px;
+    background-color: lightgray;
+
+}
+
+.centroCard{
+    width: 100%;
+    
+
+}
+
+.centroCard .sezione{
+    width: 100%;
+    display: flex;
+    margin-top: 20px;
+}
+
+.centroCard .sezione .element{
+    display: flex;
+    align-items: center;
+}
+
+.centroCard .sezione .sinistra {
+    width: 100%;
+    justify-content: right;
+}
+
+.centroCard .sezione .destra {
+    width: 100%;
+
+}
+.centroCard .sezione .centro {
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+
+}
+
+.centroCard .sezione .centro  .cerchio{
+    width: 30px;
+    aspect-ratio: 1/1;
+    border-radius: 100%;
+    background-color: var(--primary-500);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.centroCard .sezione .centro  .cerchio .cerchioDentro{
+    width: 20px;
+    aspect-ratio: 1/1;
+    border-radius: 100%;
+    background-color: white;
+}
+
+
+.centroCard .sezione .centro  .linea{
+    height: 50px;
+    width: 5px;
+    position: absolute;
+    bottom: 183px;
+    background-color: var(--primary-500);
+    z-index: 2;
+}
+
+.containerCard .containerLinea .linea{
+    background-color: var(--primary-300) !important;
+}
+
+.centroCard .linea {
+    height: 30px;
+    width: 5px;
+    position: absolute;
+    bottom: 128px;
+    left: 50%;
+    background-color: var(--primary-500);
+    transform: translate(-50%, 0);
+    z-index: 2;
+}
+
+
+.centroCard .sezione .centro  .freccia{
+    width: 5px;
+    height: 20px;
+    background-color: var(--primary-500);
+    z-index: 2;
+    position: absolute;
+    bottom: 125px;
+    border-radius: 20px;
+}
+
+.freccia:nth-child(3){
+    transform: rotateZ(30deg);
+    margin-left: 8px;
+}
+.freccia:nth-child(4){
+    transform: rotateZ(-30deg);
+    margin-right: 8px;
+}
+
+.sezione:nth-child(2){
+    margin-top: 45px;
+}
+
+.containerNposti{
+    background-color: var(--primary-300);
+    width: 140px;
+    height: 40px;
+    position: absolute;
+    top: 0;
+    border-radius: 20px;
+    right: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-bianco);
+}
+.containerNposti span{
+    font-size: 15px;
+}
+
+.prezzoTotale{
+    font-size: 12px;
+    color: var(--primary-100);
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%,0);
+    width: 100%;
+    text-align: center;
+}
+
+.prezzoTotale span{
+        text-decoration: line-through;
+
+}
+
+.bottomCard{
+    width: 100%;
+    height: 125px;
+    position: absolute;
+    bottom: 0;
+    z-index: 2;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.bottomCard .sinistra{
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+}
+
+.bottomCard .destra{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.bottomCard .sinistra .prezzo{
+
+    position: absolute;
+    bottom: 40%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-weight: bold;
+    color: var(--color-bianco);
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+}
+
+.bottomCard .destra .searchBtn{
+    width: 100px;
+    height: 40px;
+    position: absolute;
+    bottom: 0%;
+    left: 50%;
+    transform: translate(-50%,-30%);
+    background-color: var(--primary-500);
+    border-radius: 20px;
+    color: var(--color-bianco);
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .25s;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 5px 5px 23px 5px rgba(28,28,28,0.27);
+
+}
+
+.bottomCard .destra .searchBtn:hover{
+    width: 120px;
+    transform: translate(-50%, -45%);
+    box-shadow: 5px 5px 23px 5px rgba(28,28,28,0.47);
+
+}
+
+.containersfondo{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: end;
+    bottom: -20px;
+}
+
+.containersfondo img{
+    object-fit: cover;
+    width: 100%;
+    height: 140px;
+}
+
+
+
+.grid-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-auto-rows: minmax(350px, auto);
+    grid-gap: 50px;
+    margin: 180px 20px;
+    z-index: 2;
+    justify-items: center;
+}
+
+
+
+
+header .containerScegli {
+    position: fixed !important;
+    top: 70px !important;
+    transform: translate(-50%,0);
+    opacity: 1 !important;
+    left: 50%;
+    pointer-events: all !important;
+    
+}
+
+header .containerScegli p{
+    margin: 0;
+}
+
+header .centro{
+    opacity: 1 !important;
+}
+
+
+header .containerScegli:hover{
+    width: 300px !important;
+}
+
+@media screen and (max-width: 1300px){
+    header .containerScegli{
+        top: 160px !important;
+    }
+
+    header .sali{
+        top: 80px !important;
+    }
+}
+
+
+@media screen and (max-width: 768px){
+
+    
+header .containerScegli {
+    box-shadow: 5px 5px 43px 5px rgba(28,28,28,0.47) !important;
+    position: fixed !important;
+    top: -100px !important;
+    transform: translate(-50%,0);
+    opacity: 1 !important;
+    left: 50%;
+    pointer-events: all !important;
+    width: 300px !important;
+    height: 73px !important;
+    border-radius: 20px !important;
+
+}
+
+header .containerScegli .destra{
+    width: 50% !important;
+    position: unset !important;
+}
+
+
+header .containerScegli .destra span{
+    font-size: 30px !important;
+}
+
+header .containerScegli .destra .numero{
+    font-size: 20px !important;
+    padding: 0 !important;
+    width: unset;
+}
+
+
+header .containerScegli .sinistra{
+    justify-content: center;
+}
+
+
+header .containerScegli {
+    max-width: 300px !important;
+}
+
+header .centro{
+    bottom: -400px;
+}
+
+header .centro form .containerData{
+    justify-content: center;
+}
+header .centro form .containerBtn .nPosti{
+    width: 0;
+    max-width: 0;
+}
+
+}
+
+@media screen and (max-width: 480px){
+  
+    header .centro form .data > p{
+        font-size:15px !important;
+    }
+
+    header .centro form .data > i {
+        font-size: 20px !important;
+    }
+  
+}

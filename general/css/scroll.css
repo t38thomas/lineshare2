@@ -1,0 +1,26 @@
+
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 10px;
+    /* pio */
+  }
+  
+  /* Track (the area behind the thumb) */
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  
+  /* Thumb (the draggable handle) */
+  ::-webkit-scrollbar-thumb {
+
+
+    background-color: var(--primary-500);
+    border-radius: 20px;
+
+  }
+  
+  /* Hover state of the thumb */
+  ::-webkit-scrollbar-thumb:hover {
+     background-color: var(--primary-600);
+  }
