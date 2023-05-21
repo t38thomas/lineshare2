@@ -452,7 +452,7 @@ function submitFormCercaTraccia() {
     let inputs = form.querySelectorAll('input')
     inputs.forEach(input => {
         if(!input.checkValidity()) valido = false; 
-       
+        
     });  
     if(valido) form.submit();
     else {

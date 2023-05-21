@@ -215,7 +215,20 @@ session_start();
 
                     
                 }
-            }else echo "<br> nessun risultato trovato!";
+            }else{
+                // nessun risultato trovato
+                echo'
+                <div class="containerNonTrovato">
+                    <div class="sopra">
+                        <i class="fa-solid fa-magnifying-glass"></i> 
+                    </div>
+                    <div class="sotto">
+                        Nessuna corsa trovata :(
+                    </div>
+                </div>
+                ';
+
+            }
         }
     ?>
 
@@ -243,11 +256,15 @@ session_start();
         set_nPosti(<?php echo $nPosti ?>)
 
         window.data = data;
-        
     </script>
     <script src="/lineshare/general/js/app.js"></script>
-    <script src="/lineshare/header/js/app.js"></script>  
+    <script src="/lineshare/header/js/app.js">
+        setData(window.data)
+        alert(window.data)
+    </script>  
     <script src="./js/app.js"></script>
+
+ 
 </body>
 
 </html>

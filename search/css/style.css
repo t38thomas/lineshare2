@@ -381,6 +381,28 @@ header .containerScegli:hover{
     width: 300px !important;
 }
 
+.containerNonTrovato{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+.containerNonTrovato .sopra{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.containerNonTrovato .sopra i{
+    font-size: 100px;
+    color: black;
+    margin-bottom: 20px
+}
+
+.containerNonTrovato .sotto{
+    font-size: 20px;
+  
+}
+
 @media screen and (max-width: 1300px){
     header .containerScegli{
         top: 160px !important;
