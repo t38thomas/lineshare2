@@ -46,7 +46,7 @@ body{
 }
 
 .containerOnda{
-    height: 600vh;
+    height: 6480px;
     width: 100%;
 }
 
@@ -189,53 +189,54 @@ body{
 /*MAIN*/
 
 .containerCarte{
-    width: 70%;
+    width: 100%;
     height: 275px;
     position: absolute;
     left: 50%;
     transform: translate(-50%,0);
     top: 193px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
     transition: width, height .25s;
 }
 
-.containerCarte .carta{
-    width: 315px;
-    background-color: var(--color-bianco);
+.containerCarte .carta {
+    width: 450px;
+    /* background-color: var(--color-bianco); */
     border-radius: 20px;
     height: 100%;
-    box-shadow: 5px 5px 43px 5px rgba(28,28,28,0.47);
+    /* box-shadow: 5px 5px 43px 5px rgba(28,28,28,0.47); */
     transition: .25s;
-
 }
 
-.containerCarte .carta .sopra{
+.containerCarte .carta .sopra {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--primary-800);
+    /* background-color: var(--primary-800); */
     color: var(--color-bianco);
     height: 50px;
     border-radius: 20px 20px 0 0;
     font-family: 'LEMONMILK';
     font-weight: bold;
+    font-size: 50px;
+    /* background: navajowhite; */
 }
-
-.containerCarte .carta .testo{
+.containerCarte .carta .testo {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: baseline;
     height: calc(100% - 50px);
+    color: var(--color-bianco);
+    margin-top: 20px;
 }
 
-.containerCarte .carta .testo p{
-    font-size: 17px;
+.containerCarte .carta .testo p {
+    font-size: 25px;
     padding: 0 20px;
     text-align: center;
     transition: font-size .25s;
-
 }
 
 .containerCarte .carta .testo span span{
@@ -246,7 +247,7 @@ body{
     width: 600px;
     height: auto;
     position: absolute;
-    top: 580px;
+    top: 800px;
     display: flex;
     justify-content: center;
     left: 50%;
@@ -255,9 +256,8 @@ body{
     font-size: 40px;
     font-family: 'LEMONMILK';
     font-weight: bold;
-    padding: 30px;
-    background-color: var(--color-bianco);
-    box-shadow: 5px 5px 43px 5px rgba(28,28,28,0.47);
+    /* background-color: var(--color-bianco); */
+    /* box-shadow: 5px 5px 43px 5px rgba(28,28,28,0.47); */
     border-radius: 20px;
     transition: width .25s;
 }
@@ -313,18 +313,19 @@ body{
 
 }
 
-.containerPercentuali p{
+.containerPercentuali p {
     position: absolute;
-    margin-top: -45px;
-    font-size: 35px;
+    margin-top: -46px;
+    font-size: 56px;
     width: 100%;
     height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--primary-800);
-    color: var(--color-bianco);
+    /* background-color: var(--primary-800); */
+    color: var(--primary-400);
     border-radius: 20px 20px 0 0;
+    white-space: nowrap;
 }
 /* schermi piccoli */
 @media screen and (max-width: 1024px){      
@@ -334,11 +335,18 @@ body{
     }
     .containerCarte .carta{
         margin: 0 10px;
-        width: 250px;
+    }
+
+    .containerCarte .carta .sopra{
+        font-size: 40px;
+    }
+
+    .containerCarte .carta .testo{
+        margin-top: 0px;
     }
 
     .containerCarte .carta .testo p{
-        font-size: 14px;
+        font-size: 20px;
     }
 
     .containerPercentuali {
@@ -388,18 +396,24 @@ body{
 /* tablet */
 @media screen and (max-width: 768px){      
     
-    
     .containerCarte {
-        height: 200px; 
+        flex-direction: column;
+        height: 420px;
+        top: 135px;
+        margin-top: 50px;
     }
     .containerCarte .carta{
-        margin: 0 10px;
-        width: 225px;
-        min-width: 225px;
+        margin: 20px 0;
+        width: 350px;
     }
 
-    .containerCarte .carta .testo p{
-        font-size: 12px;
+    .containerCarte .carta p{
+        font-size: 17px !important;
+    }
+
+    .containerCarte .carta .sopra{
+        font-size: 50px;
+        margin-bottom: 10px;
     }
 
     .containerPercentuali {
@@ -485,22 +499,13 @@ body{
 
 /* telefono */
 @media screen and (max-width: 480px){
-  
-    .containerCarte {
-        flex-direction: column;
-        height: 420px;
-        top: 135px;
-    }
-    .containerCarte .carta{
-        margin: 10px 0;
-    }
 
-    .containerPercentuali {
+    /* .containerPercentuali {
         width: 250px !important;
         padding: 10px;
         margin-top: 30px;
-    }
-
+    } */
+/* 
     .bigItem .item:nth-child(1){
         font-size: 15px;
         margin-top: 25px;
@@ -521,10 +526,10 @@ body{
     .bigItem .item:nth-child(5){
         font-size: 23px;
          color: black;   
-    }
+    } */
 
     .containerPercentuali > p{
-        font-size: 20px;
+        font-size: 40px;
     }
   
 }

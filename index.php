@@ -37,7 +37,7 @@
 
         <div class="containerCarte">
             <div class="carta">
-                <div class="sopra">BENVENUTO</div>
+                <div class="sopra">BENVENUTO!</div>
                 <div class="testo">
                     <p>
                     Ti serve un passaggio? <br>
@@ -47,7 +47,7 @@
                 </div>
             </div>
             <div class="carta">
-                <div class="sopra">PERCHÉ</div>
+                <div class="sopra">PERCHÉ?</div>
                 <div class="testo">
                     <p>
                     Spostarti velocemente e risparmiare ti sembrano un’utopia?
@@ -59,7 +59,7 @@
         </div>
 
         <div class="containerPercentuali">
-            <p>se sono prenotati..</p>
+            <p>Fatti furbo!</p>
             <div class="sinistra bigItem">
                 <div class="item">1 posti</div>
                 <div class="item">2 posti</div>
