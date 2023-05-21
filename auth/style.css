@@ -11,6 +11,7 @@
 html {
     font-family: 'Sora', sans-serif;
     background-color: var(--color-bianco);
+    overflow-x: hidden;
 }
 
 .child {
@@ -18,7 +19,7 @@ html {
 }
 
 .child:nth-child(1) {
-    margin-top: 100px !important;
+    margin-top: 100px;
 }
 
 .child:nth-child(2) {
@@ -29,17 +30,19 @@ html {
     margin-top: -20px !important;
 }
 
+
+
 .bigContainer {
 
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
-    position: fixed;
+    position: absolute;
     right: -125%;
     transition: right 1s;
-
+    min-height: 500px;
 }
 
 .bigContainer:nth-child(1) .containerNext {
@@ -223,6 +226,7 @@ main{
     margin-top: 93px;
     height: calc(100vh - 93px);
     width: 100%;
+    min-height: 500px;
     display: flex;
 }
 
@@ -310,15 +314,20 @@ img {
 /* tablet */
 @media screen and (max-width: 768px){      
 
-    input{
+    
+.child:nth-child(1) {
+    margin-top: 20px;
+}
+
+    main input{
         width: 70% !important;
     }
 
-    input:focus{
+    main input:focus{
         width: calc(70% + 20px) !important;
     }
 
-    .containerPassword input{
+    main .containerPassword input{
         width: 550px !important;
     }
 
