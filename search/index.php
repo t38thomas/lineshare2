@@ -18,7 +18,7 @@ session_start();
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link rel="stylesheet" href="/lineshare/menu/menu.css">
     <link rel="stylesheet" href="/lineshare/menu/profile/css/style.css">
-    <link rel="icon" href="/lineshare/general/assets/lineshareBianco.svg">
+    <link rel="icon" href="/lineshare/general/assets/logo2Mezzo.svg">
     <script src="https://kit.fontawesome.com/8cf543d1bc.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/style.css">
 
