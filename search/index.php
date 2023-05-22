@@ -41,6 +41,7 @@ session_start();
 
         require_once("../auth/connessione.php");
 
+
         $partenza = $connessione->real_escape_string($_POST["partenza"]);
         $arrivo = $connessione->real_escape_string($_POST["arrivo"]);
         $nPosti = $connessione->real_escape_string($_POST["nPosti"]);

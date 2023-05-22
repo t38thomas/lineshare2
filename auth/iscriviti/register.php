@@ -15,6 +15,8 @@ if (empty($nome) || empty($email) || empty($cognome) || empty($password) || empt
     exit();
 }
 
+
+
 if ($password == $Cpassword) {
 
     $hashedpassword = password_hash($password, PASSWORD_DEFAULT);
@@ -28,27 +30,56 @@ if ($password == $Cpassword) {
             if ($connessione->query($sqlWrite) === true) {
 
                 echo "Registrazione effettuata con successo";
-                header("location: ../accedi/index.php?accedi=1");
 
+                $sql_select = "SELECT * FROM utente WHERE email = '$email'";
+
+              
+                    if ($result = $connessione->query($sql_select)) {
+                        if ($result->num_rows == 1) {
+                            $row = $result->fetch_array(MYSQLI_ASSOC);
+                            if (password_verify($password, $row['pass'])) {
+                                session_start();
+
+                                $_SESSION['id'] = $row['id'];
+                                $_SESSION['nome'] = $row['nome'];
+                                $_SESSION['cognome'] = $row['cognome'];
+                                $_SESSION['email'] = $row['email'];
+                                $_SESSION['password'] = $row['pass'];
+                                $_SESSION['guidatore'] = $row['guidatore'];
+
+                                if(isset($row["fotoProfilo"]) && $row["fotoProfilo"] != null){
+                                    $_SESSION['foto'] = $row['fotoProfilo'];
+                                }
+
+
+                                $_SESSION['loggato'] = true;
+
+
+                                header("location: ../../");
+                            }
+                        }
+                    }
+
+            
 
             } else {
                 echo "Registrazione fallita";
-                header("location: index.php?error=registration_failed");
+                header("location: ./index.php?error=registration_failed");
                 exit();
             }
         } else {
             echo "email già registrata";
-            header("location: index.php?error=email_already_exists");
+            header("location: ./index.php?error=email_already_exists");
             exit();
         }
     } else {
         echo "errore nella connessione al server";
-        header("location: index.php?error=server_connection");
+        header("location: ./index.php?error=server_connection");
         exit();
     }
 } else {
     echo "le password non coincidono";
-    header("location: index.php?error=uncorrect_password");
+    header("location: ./index.php?error=uncorrect_password");
     exit();
 }
 

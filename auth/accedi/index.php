@@ -61,9 +61,7 @@
             </div>
             <div class="errore">
                 <?php
-                
-                if(isset($_GET["accedi"])) if ($_GET["accedi"] == "1") echo "<p> registrazione effettuata con successo:<br> effettua l'accesso <p>";
-                else if(isset($_GET["error"])){
+                if(isset($_GET["error"])){
 
                 if ($_GET["error"] == "empty_input")
                     echo "<p> errore durante la registrazione: <br>gli input non sono riempiti* <p>";
@@ -73,6 +71,8 @@
                     echo "<p> errore durante la registrazione:<br> connessione al server fallita* <p>";
                 else if ($_GET["error"] == "uncorrect_password")
                     echo "<p> errore durante la registrazione:<br> email o password errata* <p>";
+                else if ($_GET["error"] == "auth_error")
+                    echo "<p> per eseguire questa operazione devi prima accedere! <p>";
 
                 }
                 ?>

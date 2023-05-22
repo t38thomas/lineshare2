@@ -111,17 +111,32 @@ pulsanti[1].addEventListener("click", () => {       //aggiungi
 };
 
 
-    /* FORM CENTRO */
+    /* FORM CERCATRACCIA */
 
 
 document.addEventListener('click', function(event) {                    //evento per chiudere il menu
-    var divDaEscludere = document.querySelector('header .centro');
+    var divDaEscludere = document.getElementById('cercaTraccia');
     var btn = document.querySelector('header .destra .cercaTraccia');
     var targetElement = event.target;
     if ( ((!divDaEscludere.contains(targetElement) && divDaEscludere.classList.length == 2) || (btn.contains(targetElement))) && ((!calendarioAperto && !containerScegliAperto) || (menuBtn.contains(targetElement))) ) {
         apriCercaTraccia();
     }
     });
+
+        /* FORM CENTRO */
+
+
+document.addEventListener('click', function(event) {                    //evento per chiudere il menu
+    var divDaEscludere =  document.getElementById('aggiungiTraccia');
+    console.log(divDaEscludere)
+    var btn = document.querySelector('header .destra .aggiungiTraccia');
+    var targetElement = event.target;
+    if ( ((!divDaEscludere.contains(targetElement) && divDaEscludere.classList.length == 2) || (btn.contains(targetElement))) && ((!calendarioAperto && !containerScegliAperto) || (menuBtn.contains(targetElement))) ) {
+        apriAggiungiTraccia();
+    }
+    });
+
+
 
 
 
@@ -406,7 +421,7 @@ function apriContainerScegli(){
 /* searchButton.js */
 
 let schede = document.querySelectorAll('.scheda');
-let barraDiRicerca = document.querySelector('header .centro');
+let barraDiRicerca = document.getElementById("cercaTraccia")
 
 function apriScheda(n,pulsante){
 
@@ -442,24 +457,51 @@ function apriCercaTraccia(){
 
         //apriScheda(1,true);
         barraDiRicerca.classList.toggle("mostra")
-        document.querySelector('header .containerScegli').classList.toggle('sali');
+        barraDiRicerca.querySelector('header .containerScegli').classList.toggle('sali');
         
 }
 
 function submitFormCercaTraccia() {
-    let form = document.querySelector('header .centro form')
+    let form = barraDiRicerca.querySelector('form')
     let valido = true;
     let inputs = form.querySelectorAll('input')
     inputs.forEach(input => {
         if(!input.checkValidity()) valido = false; 
         
     });  
-    if(valido) form.submit();
+    if(valido && inputs[0].value.toLowerCase() != inputs[1].value.toLowerCase()) form.submit();
     else {
         if(!inputs[0].checkValidity()) inputs[0].focus();
         else if(!inputs[1].checkValidity()) inputs[1].focus();
     }
 }
+
+
+aggiungiTraccia = document.getElementById("aggiungiTraccia");
+
+function submitFormAggiungiTraccia() {
+    let form = aggiungiTraccia.querySelector('form')
+    let valido = true;
+    let inputs = form.querySelectorAll('input')
+    inputs.forEach(input => {
+        if(!input.checkValidity()) valido = false; 
+        
+    });  
+    if(valido && inputs[0].value.toLowerCase() != inputs[1].value.toLowerCase()) form.submit();
+    else {
+        if(!inputs[0].checkValidity()) inputs[0].focus();
+        else if(!inputs[1].checkValidity()) inputs[1].focus();
+    }
+}
+
+function apriAggiungiTraccia(){
+
+    //apriScheda(1,true);
+    aggiungiTraccia.classList.toggle("mostra")
+    aggiungiTraccia.querySelector('header .containerScegli').classList.toggle('sali');
+    
+}
+
 
 setData(window.data)
 

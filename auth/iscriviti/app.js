@@ -137,6 +137,6 @@ function seleziona(n) {
 
 
 function submitForm() {
-    let form = document.querySelector("form")
+    let form = document.querySelector("main form")
     form.submit();
 }

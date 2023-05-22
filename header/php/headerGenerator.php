@@ -14,7 +14,7 @@
     </a>
     </div>
 
-     <div class="centro" >
+         <div class="centro" id="cercaTraccia">
         <form action="/lineshare/search/" method="post"> 
             <input type="text" class="element" name="partenza" id="partenza" placeholder="Parto da.." required pattern="[a-zA-Z]{2,}">
             <input type="text" class="element" name="arrivo" id="arrivo" placeholder="Arrivo a.." required pattern="[a-zA-Z]{2,}">
@@ -65,6 +65,22 @@
         </form>
     </div> 
 
+
+    ';
+    /* aggiungi traccia */ 
+    echo '
+
+     <div class="centro" id="aggiungiTraccia">
+        <form action="/lineshare/add/" method="post"> 
+            <input type="text" class="element" name="partenza" id="partenza" placeholder="Partirò da.." required pattern="[a-zA-Z]{2,}">
+            <input type="text" class="element" name="arrivo" id="arrivo" placeholder="Arriverò a.." required pattern="[a-zA-Z]{2,}">
+            
+        <div class="cerca element btn" onclick="submitFormAggiungiTraccia()">
+                <i class="fa-regular fa-circle-xmark" style="transform: rotate(45deg);"></i>
+            </div>
+        </form>
+    </div> 
+
     <div class="destra">
 
    
@@ -73,7 +89,7 @@
             <p>Cerca traccia</p>
         </div>
 
-        <div class="aggiungiTraccia pulsante" >
+        <div class="aggiungiTraccia pulsante">
             <i class="fa-regular fa-circle-xmark" style="transform: rotate(45deg);"></i>
             <p>Aggiungi traccia</p>
         </div>
