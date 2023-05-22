@@ -10,7 +10,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lineshare</title>
 
-    <link rel="stylesheet" href="/lineshare/general/css/scroll.css">
     <link rel="stylesheet" href="/lineshare/general/css/root.css">
     <link rel="stylesheet" href="/lineshare/header/css/header.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"/>
@@ -28,7 +27,7 @@
     
 
       
-    <script src="./general/js/app.js"></script>
-    <script src="./header/js/app.js"></script>
+    <script src="/lineshare/general/js/app.js"></script>
+    <script src="/lineshare/header/js/app.js"></script>
 </body>
 </html>

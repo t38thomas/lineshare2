@@ -20,7 +20,6 @@
             <input type="text" class="element" name="arrivo" id="arrivo" placeholder="Arrivo a.." required pattern="[a-zA-Z]{2,}">
             <input type="text" name="nPosti" id="nPosti" style="display: none" class="inputNposti">
             <input type="text" name="data" id="data" style="display: none" class="inputData">
-
             <span class="containerBtn">
             <div class="nPosti element btn">
                 <i class="fa-solid fa-user-group"></i>

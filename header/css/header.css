@@ -312,6 +312,11 @@ header .element:hover{
 /* schermi piccoli */
 @media screen and (max-width: 768px){      
 
+    .logo:nth-child(1){
+        margin-right: -5px !important;
+    }
+    
+
     header .sinistra{
         margin-left: 20px;
     }
@@ -376,7 +381,7 @@ header .element:hover{
     
     header .logo img{
     
-        height: 35px;
+        height: 50px;
         
     
     }
@@ -715,7 +720,7 @@ header .sotto .giorno{
     font-weight: 700 !important;
 }
 
-header .disabilita{
+ .disabilita{
     cursor: default !important;
     color: var(--dark-gray) !important;
     pointer-events: none;

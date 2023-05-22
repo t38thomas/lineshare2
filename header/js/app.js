@@ -123,12 +123,11 @@ document.addEventListener('click', function(event) {                    //evento
     }
     });
 
-        /* FORM CENTRO */
+        /* FORM AGGIUNGI TRACCIA */
 
 
 document.addEventListener('click', function(event) {                    //evento per chiudere il menu
     var divDaEscludere =  document.getElementById('aggiungiTraccia');
-    console.log(divDaEscludere)
     var btn = document.querySelector('header .destra .aggiungiTraccia');
     var targetElement = event.target;
     if ( ((!divDaEscludere.contains(targetElement) && divDaEscludere.classList.length == 2) || (btn.contains(targetElement))) && ((!calendarioAperto && !containerScegliAperto) || (menuBtn.contains(targetElement))) ) {

@@ -1,0 +1,54 @@
+.containerPosti{
+    height: 67px;
+    width: 550px;
+    border-radius: 20px;
+    padding: 0px 20px;
+    outline: none;
+    border: none;
+    border: 3px solid transparent;
+    background-color: var(--color-bianco);
+    font-weight: bold;
+    font-size: 17px;
+    font-family: 'Sora', sans-serif;
+    transition: .25s;
+    display: flex;
+    
+}
+
+.mostraNumero{
+    margin: 0 .25em;
+}
+
+.containerPosti .centro{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.containerPosti .centro span{
+
+    margin: 0 20px;
+    font-size: 35px;
+    cursor: pointer;
+    user-select: none;
+    color: var(--primary-500);
+    
+}
+
+.containerPosti .centro .numero{
+
+    font-size: 30px;
+
+}
+
+.containerPosti .sub-child{
+
+    width: 33.34%;
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+    user-select: none;
+
+}

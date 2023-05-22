@@ -11,7 +11,6 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lineshare</title>
 
-    <link rel="stylesheet" href="/lineshare/general/css/scroll.css">
     <link rel="stylesheet" href="/lineshare/general/css/root.css">
     <link rel="stylesheet" href="/lineshare/header/css/header.css">
     <link rel="stylesheet"
@@ -258,7 +257,6 @@ session_start();
 
         window.data = data;
     </script>
-    <script src="/lineshare/general/js/app.js"></script>
     <script src="/lineshare/header/js/app.js">
         setData(window.data)
         alert(window.data)
