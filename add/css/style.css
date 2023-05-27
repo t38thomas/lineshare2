@@ -52,3 +52,248 @@
     user-select: none;
 
 }
+
+
+/* DATA */
+
+main form .containerData{
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+main form .data{
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    border: 1px solid lightgray;
+    position: relative;
+    border-radius: 20px;
+}
+
+main form .mostraElemento{
+    opacity: 1 !important;
+    pointer-events: all !important;
+}
+
+main form .data .containerCalendario2{
+    width: 400px;
+    height: 400px;
+    background-color: var(--color-bianco);
+    position: absolute;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    cursor: default;
+    box-shadow: 5px 5px 43px 5px rgba(28,28,28,0.47) !important;
+    opacity: 0;
+    pointer-events: none; 
+    transition: .25s;
+    font-weight: 400;
+}
+
+main form .data .containerCalendario2 .sopra{
+    height: 70px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--primary-800);
+    color: var(--color-bianco);
+    border-radius: 20px 20px 0 0;
+}
+
+main form .data .containerCalendario2 .sopra .mese{
+    width: 80%;
+    display: flex;
+    white-space: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+main form .data .containerCalendario2 .sopra .destra{
+    padding: 0;
+    min-width: 50px;
+    height: 50px;
+
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 50px;
+    cursor: pointer;
+    transition: .25s;
+}
+
+main form .data .containerCalendario2 .sopra .destra:hover,main form .data .containerCalendario2 .sopra .sinistra:hover{
+    background-color: var(--primary-700);
+
+}
+
+main form .data .containerCalendario2 .sopra .sinistra{
+    padding: 0;
+    min-width: 50px;
+    height: 50px;
+
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: .25s;
+    margin: 0;
+ }
+
+ main form .data .containerCalendario2 .sopra .sinistra i{
+    margin-left: 7px;
+ }
+
+main form .data .containerCalendario2 .sopra i{
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--color-bianco);
+    cursor: pointer;
+    transition: .25s;
+}
+
+main form .data .containerCalendario2 .sotto{
+    height: 100%;
+    width: 100%;
+    display: grid;
+    margin-top: 10px;
+    grid-template-rows: repeat(auto, 1fr);
+    grid-template-columns: repeat(7, 1fr);
+}
+
+main .sotto .item{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main .sotto .item .selezionata{
+    background-color: var(--primary-500);
+    color: var(--color-bianco);
+}
+
+main .sotto .item .selezionata:hover{
+    background-color: var(--primary-500);
+}
+
+main .sotto .item p{
+    aspect-ratio: 1/1;
+    width: 20px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 0px !important;
+    cursor: pointer;
+}
+
+main .sotto .item p:hover{
+    border-radius: 15px;
+    background-color: rgb(241, 241, 241);
+
+}
+
+main .sotto .giorno{
+    font-weight: 700 !important;
+}
+
+ .disabilita{
+    cursor: default !important;
+    color: var(--dark-gray) !important;
+    pointer-events: none;
+}
+
+main .selezionata{
+    border-radius: 15px;
+    color: white;
+}
+
+
+main form .element{
+    background-color: var(--color-bianco);
+    height: 67px;
+    border-right: 1px solid gray;
+    font-size: 17px;
+    font-weight: bold;
+    font-family: 'Sora',sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+
+}
+
+main form .element p{
+    color: black;
+    margin-top: 0;
+}
+
+
+main form .element .disabilita p{
+    color: var(--dark-gray) !important;
+
+}
+
+main form .element i{
+    color: black;
+    margin-right: 0px;
+    width: auto;
+    height: auto;
+    font-size: 23px;
+}
+
+main form .element > p{
+    margin-left: 15px;
+    word-wrap: break-word;
+    white-space: nowrap;
+    color: black;
+    font-weight: bold;
+    margin-top: 0;
+    font-size: 20px;
+}
+
+
+.sopra .sinistra, .sopra .destra {
+    width: 100%;
+    margin: 0 25px !important;
+    padding: 0 !important;
+}
+
+main .containerOrario {
+    position: absolute;
+    width: 400px;
+    height: 100px;
+    background: var(--color-bianco);
+    top: 245px;
+    border-radius: 20px;
+    box-shadow: 5px 5px 43px 5px rgba(28,28,28,0.47) !important;
+
+    opacity: 0;
+    pointer-events: none; 
+    transition: .25s;
+    cursor: default;
+}
+
+main select{
+        width: 100px;
+        height: 67px;
+        border-radius: 20px;
+       
+        text-align: center;
+        background: var(--color-bianco);
+        font-size: 20px;
+        font-weight: bold;
+        font-family: 'Sora';
+        outline: none;
+        cursor: pointer;
+        border: 1px solid lightgray;
+}

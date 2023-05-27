@@ -68,3 +68,97 @@ function aggiungiPosto(n){
         else rimuoviBtn.classList.add('disabilita')
     }
 }
+
+
+
+
+
+
+let acceso = false;
+//cambia visuale
+function swapView2(n) {
+
+    acceso = false;
+
+    document.querySelector('.bigContainer:nth-child(' + n + ')').classList.toggle('mostraCentro')
+    document.querySelector('.bigContainer:nth-child(' + n + ')').classList.toggle('mostraDestra')
+    let prossimo = document.querySelector('.bigContainer:nth-child(' + (n + 1) + ')');
+    if (prossimo !== null) prossimo.classList.toggle('mostraCentro')
+
+    document.querySelectorAll('input').forEach(input => { input.removeEventListener('keyup', () => { }); });
+
+
+    let pulsante = document.querySelector('.bigContainer:nth-child(' + (n + 1) + ') .nextBtn:nth-last-child(1)');
+
+    let inputs = document.querySelectorAll('.bigContainer:nth-child(' + (n + 1) + ') input')
+    // console.log(inputs)
+    inputs.forEach(input => {
+        if (input.checkValidity() && !acceso) {
+            pulsante.classList.toggle('valido')
+            acceso = true;
+            //console.log("acceso")
+        }
+
+    
+        
+        input.addEventListener('keyup', () => {
+            let j = 0;
+            for (let i = 0; i < inputs.length; i++) if (inputs[i].checkValidity()) j++;
+            if (inputs.length == j) {
+                if (input.checkValidity() && !acceso) {
+                    //console.log("pio valido")
+                    pulsante.classList.toggle('valido')
+                    acceso = true;
+
+
+                }
+            } else if (acceso) {
+                pulsante.classList.toggle('valido')
+                acceso = false;
+            }
+        });
+
+        if(n != 1){
+        let prevNextBtn = document.querySelector('.bigContainer:nth-child(' + (n) + ') .nextBtn:nth-child(1)')
+        prevNextBtn.addEventListener('click', () => {
+            let j = 0;
+            for (let i = 0; i < inputs.length; i++) if (inputs[i].checkValidity()) j++;
+            if (inputs.length == j) {
+
+                if (input.checkValidity() && !acceso) {
+                    pulsante.classList.toggle('valido')
+                    acceso = true;
+
+
+                }
+            } else if (acceso) {
+                pulsante.classList.toggle('valido')
+                acceso = false;
+            }
+        })
+    }
+
+
+        let prevBtn = document.querySelector('.bigContainer:nth-child(' + (n + 1) + ') .nextBtn:nth-child(1)')
+        prevBtn.addEventListener('click', () => {
+            let j = 0;
+            for (let i = 0; i < inputs.length; i++) if (inputs[i].checkValidity()) j++;
+            if (inputs.length == j) {
+
+                if (input.checkValidity() && !acceso) {
+                    pulsante.classList.toggle('valido')
+                    acceso = true;
+                }
+            } else if (acceso) {
+                pulsante.classList.toggle('valido')
+                acceso = false;
+            }
+        })
+
+
+
+    });
+
+
+
+}

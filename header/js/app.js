@@ -99,16 +99,53 @@ pulsanti[1].addEventListener("click", () => {       //aggiungi
     var targetElement = event.target;
     if ( (!divDaEscludere.contains(targetElement) && divDaEscludere.classList.length == 2) || (btn.contains(targetElement))) {
         apriCalendario();
-        if(calendarioAperto) calendarioAperto = true;
-        else calendarioAperto = false;
     }
     });
 
-    riempiCalendario()
+    riempiCalendario(0)
 
+    /* CALENDARIO 2*/
+    document.addEventListener('click', function(event) {                    //evento per chiudere il menu
+        var divDaEscludere = document.querySelector('main .data .containerCalendario2');
+        var btn = document.querySelector('main form .containerData');
+        var targetElement = event.target;
+        console.log(btn.contains(targetElement) , (!divDaEscludere.contains(targetElement) && divDaEscludere.classList.length == 2))
+        if ( (!divDaEscludere.contains(targetElement) && divDaEscludere.classList.length == 2) || (btn.contains(targetElement))) {
+            apriCalendario2();
+        }
+    });
+    
 
 
 };
+
+let mostraPartenza = document.querySelectorAll('.mostraPartenza');
+let mostraData = document.querySelectorAll('.mostraData')
+
+function apriCalendario2(){
+    let calendario = document.querySelector('main form .data .containerCalendario2')
+    calendario.classList.toggle('mostraElemento');
+
+    document.querySelector('.containerData .containerOrario').classList.toggle('mostraElemento')
+
+    let testo = document.getElementById("testoData")
+    
+    mostraPartenza.forEach(t =>{
+        if(testo.innerHTML == "Oggi" || testo.innerHTML == "Domani"){
+            if(t != mostraPartenza[0]) t.innerHTML = "partirò";
+            else t = "partirò&nbsp&nbsp&nbsp&nbsp";
+        } 
+        else t.innerHTML = "partirò il";
+    })
+
+    mostraData.forEach(t => {
+        if(testo.innerHTML == "Oggi" || testo.innerHTML == "Domani") t.innerHTML = testo.innerHTML.toLowerCase();
+        else t.innerHTML = giornoSelezionato[1] + " " + mesi[meseSelezionato[1]].nome;
+    });
+
+
+}
+
 
 
     /* FORM CERCATRACCIA */
@@ -186,51 +223,53 @@ mesi[11] = new mese("Dicembre",31);   //dicembre
 
 let meseSelezionato = null;
 let giornoSelezionato = null;
-let grid = document.querySelector('header .centro form .data .containerCalendario .sotto');
-let monthDisplay = document.querySelector('header .centro form .data .containerCalendario .sopra .mese');
-let meseAvanti = 0;
+let grid = document.querySelectorAll('.data .sotto');
+let monthDisplay = document.querySelectorAll('.data .sopra .mese');
+let meseAvanti = [0,0];
+
+console.log(monthDisplay)
 
 
 let t = new Date();
 let date = ('0' + t.getDate()).slice(-2);
 let month = ('0' + (t.getMonth() + 1)).slice(-2);
-let year = t.getFullYear();
-let annoCorrente = year;
+let year = [t.getFullYear(), t.getFullYear()]
+let annoCorrente = [year[0],year[1]];
 
-meseSelezionato = (Number(month)-1+meseAvanti)%12;
-giornoSelezionato = date;
+meseSelezionato = [(Number(month)-1+meseAvanti[0])%12,(Number(month)-1+meseAvanti[1])%12];
+giornoSelezionato = [date,date];
 
-if(year % 4 == 0) mesi[1].giorni = 29;
+if(year[0] % 4 == 0) mesi[1].giorni = 29;
 
 
 function apriCalendario(){
     document.querySelector('header .centro form .data .containerCalendario').classList.toggle('mostraElemento')
     if(calendarioAperto) calendarioAperto = false;
-    else calendarioAperto = true;
+    else calendarioAperto = true
 }
 
 
-function setData(data){
+function setData(data,calendario){
 
     data = data.split('-')
 
-    let mesePrev = meseSelezionato+1;
-    giornoSelezionato = Number(data[2]);
-    meseSelezionato = Number(data[1]) - 1;
-    year = Number(data[0])
+    let mesePrev = meseSelezionato[calendario]+1;
+    giornoSelezionato[calendario] = Number(data[2]);
+    meseSelezionato[calendario] = Number(data[1]) - 1;
+    year[calendario] = Number(data[0])
 
-    let selezionaString =  giornoSelezionato + " " + mesi[meseSelezionato].abb;
+    let selezionaString =  giornoSelezionato[calendario] + " " + mesi[meseSelezionato[calendario]].abb;
 
-    if(Number(giornoSelezionato) == Number(date) && meseAvanti==0 && annoCorrente == year) datePicker.innerHTML = "Oggi";
-    else if( Number(giornoSelezionato) == Number(date)+1 && meseAvanti==0 && annoCorrente == year) datePicker.innerHTML = "Domani";
-    else datePicker.innerHTML = selezionaString;
+    if(Number(giornoSelezionato[calendario]) == Number(date) && meseAvanti[calendario]==0 && annoCorrente[calendario] == year[calendario]) datePicker[calendario].innerHTML = "Oggi";
+    else if( Number(giornoSelezionato[calendario]) == Number(date)+1 && meseAvanti[calendario]==0 && annoCorrente[calendario] == year[calendario]) datePicker[calendario].innerHTML = "Domani";
+    else datePicker[calendario].innerHTML = selezionaString;
 
-    for(let i=0; i< abs(meseSelezionato+1 - Number(mesePrev)); i++){
-        if(meseSelezionato - Number(mesePrev) > 0) sposta(1)
+    for(let i=0; i< abs(meseSelezionato[calendario]+1 - Number(mesePrev)); i++){
+        if(meseSelezionato[calendario] - Number(mesePrev) > 0) sposta(1)
         else sposta(-1)
     }
  
-    riempiCalendario()
+    riempiCalendario(0)
 }
 
 function abs(x){
@@ -238,84 +277,83 @@ function abs(x){
     else return x*-1;
 }
 
-function setAnno(anno){
+function setAnno(anno,calendario){
     if(anno % 4 == 0) mesi[1].giorni = 29;
     else mesi[1].giorni = 28;
 
-    if(annoCorrente != anno) t = new Date(anno,0)
+    if(annoCorrente[calendario] != anno) t = new Date(anno,0)
     else t = new Date();
 
     month = ('0' + (t.getMonth() + 1)).slice(-2);
-    year = t.getFullYear();
+    year[calendario] = t.getFullYear();
 
-    meseAvanti = 0;
+    meseAvanti[calendario] = 0;
     sposta(0);
 
 
     document.querySelector('header .centro form .data .containerCalendario .sopra .destra').classList.remove("disabilita")
     document.querySelector('header .centro form .data .containerCalendario .sopra .destra i').classList.remove("disabilita")
-    if(annoCorrente != anno){
-        giornoSelezionato = null;
-        meseSelezionato = null;
+    if(annoCorrente[calendario] != anno){
+        giornoSelezionato[calendario] = null;
+        meseSelezionato[calendario] = null;
     }
 }
 
 
 
-function riempiCalendario(){
+function riempiCalendario(calendario){
 
-    monthDisplay.innerHTML = mesi[(Number(month)-1+meseAvanti)%12].nome;
+    monthDisplay[calendario].innerHTML = mesi[(Number(month)-1+meseAvanti[calendario])%12].nome;
    
 
-    if((Number(month)-1+meseAvanti)%12 == 0 && year == annoCorrente && Number(month) != 1){
-       year++; 
-       if(year % 4 == 0) mesi[1].giorni = 29;
+    if((Number(month)-1+meseAvanti[calendario])%12 == 0 && year[calendario] == annoCorrente[calendario] && Number(month) != 1){
+       year[calendario]++; 
+       if(year[calendario] % 4 == 0) mesi[1].giorni = 29;
        else mesi[1].giorni = 28;
     }  
-    else if((Number(month)-1+meseAvanti)%12 == 11 && year != annoCorrente && Number(month) != 1){
-        year--;
-        if(year % 4 == 0) mesi[1].giorni = 29;
+    else if((Number(month)-1+meseAvanti[calendario])%12 == 11 && year[calendario] != annoCorrente[calendario] && Number(month) != 1){
+        year[calendario]--;
+        if(year[calendario] % 4 == 0) mesi[1].giorni = 29;
         else mesi[1].giorni = 28;
     } 
-    if(annoCorrente != year)  monthDisplay.innerHTML += " " + year;
+    if(annoCorrente[calendario] != year[calendario])  monthDisplay[calendario].innerHTML += " " + year[calendario];
+    
+    var firstDay = (new Date(year[calendario], month-1+meseAvanti[calendario], 1)).getDay();    
 
-    grid.innerHTML = "";
-    grid.innerHTML += '<div class="item giorno">lun</div>';
-    grid.innerHTML += '<div class="item giorno">mar</div>';
-    grid.innerHTML += '<div class="item giorno">mer</div>';
-    grid.innerHTML += '<div class="item giorno">gio</div>';
-    grid.innerHTML += '<div class="item giorno">ven</div>';
-    grid.innerHTML += '<div class="item giorno">sab</div>';
-    grid.innerHTML += '<div class="item giorno">dom</div>';
-
-    var firstDay = (new Date(year, month-1+meseAvanti, 1)).getDay();    
-
-
-    for(let i=0; i<firstDay-1; i++){
-        grid.innerHTML += '<div class="item"></div>';
-    }
+        grid[calendario].innerHTML = "";
+        grid[calendario].innerHTML += '<div class="item giorno">lun</div>';
+        grid[calendario].innerHTML += '<div class="item giorno">mar</div>';
+        grid[calendario].innerHTML += '<div class="item giorno">mer</div>';
+        grid[calendario].innerHTML += '<div class="item giorno">gio</div>';
+        grid[calendario].innerHTML += '<div class="item giorno">ven</div>';
+        grid[calendario].innerHTML += '<div class="item giorno">sab</div>';
+        grid[calendario].innerHTML += '<div class="item giorno">dom</div>';
 
 
+        for(let i=0; i<firstDay-1; i++){
+            grid[calendario].innerHTML += '<div class="item"></div>';
+        }
 
-    // console.log("mese selezionato: " + meseSelezionato)
-    // console.log("giorno selezionato: " + giornoSelezionato)
-    // console.log("mese mostrato: " + (Number(month)-1+meseAvanti)%12)
-
-    for(let i=1; i<mesi[(Number(month)-1+meseAvanti)%12].giorni+1; i++){
+        for(let i=1; i<mesi[(Number(month)-1+meseAvanti[calendario])%12].giorni+1; i++){
        
-        if(i < date && meseAvanti==0 && annoCorrente == year ) grid.innerHTML += '<div class="item disabilita"><p>' + i + '</p></div>';
-        else if(i == giornoSelezionato && meseSelezionato == (Number(month)-1+meseAvanti)%12) grid.innerHTML += '<div class="item"><p class="selezionata" onclick="selezionaGiorno(this)">' + i + '</p></div>';
-        else grid.innerHTML += '<div class="item"><p onclick="selezionaGiorno(this)">' + i + '</p></div>';
-    }
+            if(i < date && meseAvanti[calendario]==0 && annoCorrente[calendario] == year[calendario] ) grid[calendario].innerHTML += '<div class="item disabilita"><p>' + i + '</p></div>';
+            else if(i == giornoSelezionato[calendario] && meseSelezionato[calendario] == (Number(month)-1+meseAvanti[calendario])%12) grid[calendario].innerHTML += '<div class="item"><p class="selezionata" onclick="selezionaGiorno(this, '+ calendario +')">' + i + '</p></div>';
+            else grid[calendario].innerHTML += '<div class="item"><p onclick="selezionaGiorno(this, ' + calendario + ')">' + i + '</p></div>';
+        }
+
+    // console.log("mese selezionato: " + meseSelezionato[calendario])
+    // console.log("giorno selezionato: " + giornoSelezionato[calendario])
+    // console.log("mese mostrato: " + (Number(month)-1+meseAvanti[calendario])%12)
 }
 
-let datePicker = document.querySelector('header .centro form .data p')
-let datePickerField = document.querySelector('header .centro form .inputData')
+let datePicker = document.querySelectorAll('form .data p')
+let datePickerField = document.querySelectorAll('form .inputData')
 
-impostaData();
 
-function impostaData(){
-    let date = new Date(year,meseSelezionato, giornoSelezionato)
+impostaData(0);
+
+function impostaData(calendario){
+    let date = new Date(year[calendario],meseSelezionato[calendario], giornoSelezionato[calendario])
 
 
     var formattedDate = date.getFullYear() + "-" 
@@ -323,27 +361,27 @@ function impostaData(){
     else formattedDate += '0' + (date.getMonth()+1) + "-";
     if(date.getDate() >= 10) formattedDate += date.getDate();
     else formattedDate += '0' + date.getDate();
-    datePickerField.value = formattedDate;
+    datePickerField[calendario].value = formattedDate;
 
 
 }
 
-function selezionaGiorno(n){
+function selezionaGiorno(n,calendario){
         
-    giornoSelezionato = n.innerHTML;
-    meseSelezionato = (Number(month)-1+meseAvanti)%12;
-    impostaData()
+    giornoSelezionato[calendario] = n.innerHTML;
+    meseSelezionato[calendario] = (Number(month)-1+meseAvanti[calendario])%12;
+    impostaData(calendario)
     
-    let prev = grid.querySelector('.selezionata');
+    let prev = grid[calendario].querySelector('.selezionata');
     if(prev != null) prev.classList.remove('selezionata');
     n.classList.add('selezionata');
 
 
-    let selezionaString =  n.innerHTML + " " + mesi[(new Date(year, month-1+meseAvanti, 1)).getMonth()].abb;
+    let selezionaString =  n.innerHTML + " " + mesi[(new Date(year[calendario], month-1+meseAvanti[calendario], 1)).getMonth()].abb;
 
-    if(Number(n.innerHTML) == Number(date) && meseAvanti==0 && annoCorrente == year) datePicker.innerHTML = "Oggi";
-    else if( Number(n.innerHTML) == Number(date)+1 && meseAvanti==0 && annoCorrente == year) datePicker.innerHTML = "Domani";
-    else datePicker.innerHTML = selezionaString;
+    if(Number(n.innerHTML) == Number(date) && meseAvanti[calendario]==0 && annoCorrente[calendario] == year[calendario]) datePicker[calendario].innerHTML = "Oggi";
+    else if( Number(n.innerHTML) == Number(date)+1 && meseAvanti[calendario]==0 && annoCorrente[calendario] == year[calendario]) datePicker[calendario].innerHTML = "Domani";
+    else datePicker[calendario].innerHTML = selezionaString;
 
 }
 
@@ -373,35 +411,66 @@ function dayToString(day){
     }
 }
 
-function sposta(n){
-    // console.log(meseAvanti)
+
+        
+function sposta(n,calendario){
+    // console.log(meseAvanti[calendario])
 
 
-    if(n == 1){     //sposta avanti
-        if(meseAvanti + 1 < 12) meseAvanti++;
-        if(meseAvanti == 1){
-            document.querySelector('header .centro form .data .containerCalendario .sopra .sinistra').classList.remove("disabilita")
-            document.querySelector('header .centro form .data .containerCalendario .sopra .sinistra i').classList.remove("disabilita")
+    if(calendario == 0){
+        if(n == 1){     //sposta avanti
+            if(meseAvanti[calendario] + 1 < 12) meseAvanti[calendario]++;
+            if(meseAvanti[calendario] == 1){
+                document.querySelector('header .centro form .data .containerCalendario .sopra .sinistra').classList.remove("disabilita")
+                document.querySelector('header .centro form .data .containerCalendario .sopra .sinistra i').classList.remove("disabilita")
+            }
+            else if(meseAvanti[calendario] == 11){
+                document.querySelector('header .centro form .data .containerCalendario .sopra .destra').classList.add("disabilita")
+                document.querySelector('header .centro form .data .containerCalendario .sopra .destra i').classList.add("disabilita")
+            }
+            riempiCalendario(calendario)
         }
-        else if(meseAvanti == 11){
-            document.querySelector('header .centro form .data .containerCalendario .sopra .destra').classList.add("disabilita")
-            document.querySelector('header .centro form .data .containerCalendario .sopra .destra i').classList.add("disabilita")
-        }
-        riempiCalendario()
+        else{           //sposta indietro
+        
+            if(meseAvanti[calendario] - 1 > -1) meseAvanti[calendario]--;
+            if(meseAvanti[calendario] == 0){
+                document.querySelector('header .centro form .data .containerCalendario .sopra .sinistra').classList.add("disabilita")
+                document.querySelector('header .centro form .data .containerCalendario .sopra .sinistra i').classList.add("disabilita")
+            }
+            else if(meseAvanti[calendario] == 10){
+                document.querySelector('header .centro form .data .containerCalendario .sopra .destra').classList.remove("disabilita")
+                document.querySelector('header .centro form .data .containerCalendario .sopra .destra i').classList.remove("disabilita")
+            }
+            riempiCalendario(calendario)
+        } 
     }
-    else{           //sposta indietro
-       
-        if(meseAvanti - 1 > -1) meseAvanti--;
-        if(meseAvanti == 0){
-            document.querySelector('header .centro form .data .containerCalendario .sopra .sinistra').classList.add("disabilita")
-            document.querySelector('header .centro form .data .containerCalendario .sopra .sinistra i').classList.add("disabilita")
+    else{
+        if(n == 1){     //sposta avanti
+            if(meseAvanti[calendario] + 1 < 12) meseAvanti[calendario]++;
+            if(meseAvanti[calendario] == 1){
+                document.querySelector('main form .data .containerCalendario2 .sopra .sinistra').classList.remove("disabilita")
+                document.querySelector('main form .data .containerCalendario2 .sopra .sinistra i').classList.remove("disabilita")
+            }
+            else if(meseAvanti[calendario] == 11){
+                document.querySelector('main form .data .containerCalendario2 .sopra .destra').classList.add("disabilita")
+                document.querySelector('main form .data .containerCalendario2 .sopra .destra i').classList.add("disabilita")
+            }
+            riempiCalendario(calendario)
         }
-        else if(meseAvanti == 10){
-            document.querySelector('header .centro form .data .containerCalendario .sopra .destra').classList.remove("disabilita")
-            document.querySelector('header .centro form .data .containerCalendario .sopra .destra i').classList.remove("disabilita")
-        }
-        riempiCalendario()
-    }  
+        else{           //sposta indietro
+        
+            if(meseAvanti[calendario] - 1 > -1) meseAvanti[calendario]--;
+            if(meseAvanti[calendario] == 0){
+                document.querySelector('main form .data .containerCalendario2 .sopra .sinistra').classList.add("disabilita")
+                document.querySelector('main form .data .containerCalendario2 .sopra .sinistra i').classList.add("disabilita")
+            }
+            else if(meseAvanti[calendario] == 10){
+                document.querySelector('main form .data .containerCalendario2 .sopra .destra').classList.remove("disabilita")
+                document.querySelector('main form .data .containerCalendario2 .sopra .destra i').classList.remove("disabilita")
+            }
+            riempiCalendario(calendario)
+        } 
+    }
 
 }
 

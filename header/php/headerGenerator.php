@@ -41,13 +41,13 @@
                 <p>Oggi</p>
                 <div class="containerCalendario" onclick="apriCalendario()">
                     <div class="sopra">
-                        <div class="sinistra disabilita" onclick="sposta(0)"> 
+                        <div class="sinistra disabilita" onclick="sposta(0,0)"> 
                             <i class="material-symbols-outlined disabilita">arrow_back_ios</i>
                             </div>
                         <div class="mese">
                             
                         </div>
-                        <div class="destra" onclick="sposta(1)"> 
+                        <div class="destra" onclick="sposta(1,0)"> 
                         <i class="material-symbols-outlined">arrow_forward_ios</i>
                         </div>
                     </div>

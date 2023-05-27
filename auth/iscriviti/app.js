@@ -6,8 +6,7 @@ let acceso = false;
 
 
 //primo big container
-inputPrimo.addEventListener('keyup', () => {            
-
+inputPrimo.addEventListener('keyup', () => {
 
     if (inputPrimo.checkValidity() && !accesoPrimo) {
         pulsantePrimo.classList.toggle('valido')
@@ -37,7 +36,7 @@ function swapView(n) {
     let pulsante = document.querySelector('.bigContainer:nth-child(' + (n + 1) + ') .nextBtn:nth-last-child(1)');
 
     let inputs = document.querySelectorAll('.bigContainer:nth-child(' + (n + 1) + ') input')
-    console.log(inputs)
+    // console.log(inputs)
     inputs.forEach(input => {
         if (input.checkValidity() && !acceso) {
             pulsante.classList.toggle('valido')

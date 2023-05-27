@@ -728,7 +728,7 @@ header .sotto .giorno{
 
 header .selezionata{
     border-radius: 15px;
-    color: white;
+    color: var(--color-bianco);
 }
 
 header .centro form .cerca i{
