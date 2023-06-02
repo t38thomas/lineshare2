@@ -75,7 +75,7 @@
                     <span class="material-symbols-outlined" onclick="aggiungiPosto(1)">add_circle</span>
 
                 </div>
-                <div class="destra sub-child mostraPasseggeri">passeggeri</div>
+                <div class="destra sub-child mostraPasseggeri" style="justify-content: center;">passeggeri</div>
             </div>
 
            
@@ -115,10 +115,10 @@
         <div class="bigContainer ">
  
             <h1 class="child">Andrò da <?php echo $partenza . " a " . $arrivo . ","; ?></h1>
-            <h2 class="child" style="display: flex;">ho posto per <div class="mostraNumero">quattro</div> <div class="mostraPasseggeri">passeggeri </div> &VeryThinSpace; e..</h2>
+            <h2 class="child" style="display: flex; justify-content: center; flex-wrap: wrap;">ho posto per <div class="mostraNumero">quattro</div> <div class="mostraPasseggeri">passeggeri </div> &VeryThinSpace; e..</h2>
             
             <div class="containerPosti child">
-                <div class="sinistra sub-child mostraPartenza" style="text-transform: capitalize;">partirò&nbsp&nbsp&nbsp&nbsp
+                <div class="destra sub-child mostraPartenza" style="text-transform: capitalize;">partirò
 
                 </div>
                 <div class="centro sub-child">
@@ -144,58 +144,110 @@
                             <div class="sotto"></div>
                         </div>
                     </div>
-                    <div class="containerOrario" onclick="apriCalendario2()">
-                    </div>
                 </span>
 
                 </div>
-                <div class="destra sub-child">
-                    alle &nbsp
-                    <select>
+            </div>
 
-    <!-- <?php
-        $oraLocale = date('H'); // Ottieni l'ora locale nel formato HH:MM:SS
-        $oraLocale += 2;
-        $minutiLocale = date('i'); // Ottieni l'ora locale nel formato HH:MM:SS
-        $minutiLocale = floor($minutiLocale/10);
-        $minutiLocale *= 10;
-        $tempOra = $oraLocale;
-        $tempMin = $minutiLocale;
-        while($oraLocale <= 23 && $tempMin <= 50){
-            echo '<option value='.$oraLocale.':'.$minutiLocale.'>'.$oraLocale.':'.$minutiLocale.'</option>';
-            
-            if($minutiLocale + 10 <= 50) $minutiLocale += 10;
-            else {
-                $minutiLocale = "00";
-                $oraLocale++;
-            }
-        }   
-    ?> -->
-    
- 
-    <?php
-        $oraLocale = "00";
-        $minutiLocale = "00";
-        $tempOra = $oraLocale;
-        $tempMin = $minutiLocale;
-        while($oraLocale <= 23 && $minutiLocale <= 50){
-            if($oraLocale == 8 && $minutiLocale == 0) echo '<option value='.$oraLocale.':'.$minutiLocale.' selected>'.$oraLocale.':'.$minutiLocale.'</option>';
-            else echo '<option value='.$oraLocale.':'.$minutiLocale.'>'.$oraLocale.':'.$minutiLocale.'</option>';
-            
-            if($minutiLocale + 10 <= 50) $minutiLocale += 10;
-            else {
-                $minutiLocale = "00";
-                $oraLocale++;
-                if($oraLocale < 10){
-                  $oraLocale = "0$oraLocale";  
-                } 
-            }
-        }   
-    
-    ?>
+            <div class="containerPosti child">
+            <div class="destra sub-child">
+                alle
+            </div>
+            <div class="centro sub-child">
+                <select id="selectPartenza">
 
- 
-</select>
+                <?php
+                    $oraLocale = date('H'); // Ottieni l'ora locale nel formato HH:MM:SS
+                    $i = 0;
+                    while($oraLocale + 1 != 24 && $i!=2){
+                      $oraLocale++;
+                      $i++;
+                    } 
+                    $minutiLocale = date('i'); // Ottieni l'ora locale nel formato HH:MM:SS
+                    $minutiLocale = floor($minutiLocale/10);
+                    $minutiLocale *= 10;
+                   
+                    if($minutiLocale == 0) $minutiLocale = "0$minutiLocale";
+                    if($oraLocale < 10) $oraLocale = "0$oraLocale"; 
+
+                    $tempOra = $oraLocale;
+                    $tempMin = $minutiLocale;
+                    echo '<option value='.$oraLocale.':'.$minutiLocale.' selected>'.$oraLocale.':'.$minutiLocale.'</option>';
+                        
+                        if($minutiLocale + 10 <= 50) $minutiLocale += 10;
+                        else {
+                            $minutiLocale = "00";
+                            $oraLocale++;
+                        }
+
+                    while($oraLocale <= 23 && $tempMin <= 50){
+                        echo '<option value='.$oraLocale.':'.$minutiLocale.'>'.$oraLocale.':'.$minutiLocale.'</option>';
+                        
+                        if($minutiLocale + 10 <= 50) $minutiLocale += 10;
+                        else {
+                            $minutiLocale = "00";
+                            $oraLocale++;
+                            if($oraLocale < 10) $oraLocale = "0$oraLocale";
+                            //todo: loop con if($oraLocale == 24) $oraLocale = "00";
+                        }
+                    }   
+                ?> 
+
+            
+            </select>
+                </div>
+            </div>
+            <div class="containerPosti child" style="margin-top: -20px;">
+            <div class="destra sub-child">
+                Arriverò alle
+            </div>
+            <div class="centro sub-child">
+                <select id="selectArrivo">
+                <?php
+                    $oraLocale = date('H'); // Ottieni l'ora locale nel formato HH:MM:SS
+                    $i = 0;
+                    while($oraLocale + 1 != 24 && $i!=2){
+                        $oraLocale++;
+                        $i++;
+                      } 
+        
+
+                    $minutiLocale = date('i'); // Ottieni l'ora locale nel formato HH:MM:SS
+                    $minutiLocale = floor($minutiLocale/10);
+                    $minutiLocale *= 10;
+                    $minutiLocale += 10;
+                    if($minutiLocale == 60){
+                        $minutiLocale = "00";
+                        $oraLocale++;
+                        if($oraLocale == 24) $oraLocale = "00";
+                    }
+                    if($oraLocale < 10) $oraLocale = "0$oraLocale";
+
+                    echo '<option value='.$oraLocale.':'.$minutiLocale.' selected>'.$oraLocale.':'.$minutiLocale.'</option>';
+                        
+                        if($minutiLocale + 10 <= 50) $minutiLocale += 10;
+                        else {
+                            $minutiLocale = "00";
+                            $oraLocale++;
+                        }
+
+                        $tempArrivoOra = $oraLocale;
+                        $tempArrivoMin = $minutiLocale - 10;
+
+                    while($oraLocale <= 23 && $tempMin <= 50){
+                        echo '<option value='.$oraLocale.':'.$minutiLocale.'>'.$oraLocale.':'.$minutiLocale.'</option>';
+                        
+                        if($minutiLocale + 10 <= 50) $minutiLocale += 10;
+                        else {
+                            $minutiLocale = "00";
+                            $oraLocale++;
+                            if($oraLocale < 10) $oraLocale = "0$oraLocale";
+                        }
+                    }   
+                ?> 
+
+
+            </select>
                 </div>
             </div>
 
@@ -208,24 +260,16 @@
 
             <div class="bigContainer ">
             <h1 class="child">Andrò da <?php echo $partenza . " a " . $arrivo . ","; ?></h1>
-            <h2 class="child" style="display: flex;">ho posto per <div class="mostraNumero">quattro</div> <div class="mostraPasseggeri">passeggeri </div> , &nbsp <div class="mostraPartenza"> partirò</div> &nbsp <div class="mostraData"> oggi</div> ..</h2>
+            <h2 class="child" style="display: flex; justify-content: center; flex-wrap: wrap;">ho posto per <div class="mostraNumero">quattro</div> <div class="mostraPasseggeri">passeggeri </div> , &nbsp; <div class="mostraPartenza"> partirò</div> &nbsp; <div class="mostraData"> oggi</div>  &nbsp;  <div class="mostraOraPartenza"> alle <?php echo $tempOra . ":" . $tempMin ?> </div> &nbsp; e tornerò alle &nbsp; <div class="mostraOraArrivo"><?php echo $tempArrivoOra . ":" . $tempArrivoMin?></div>  </h2>
 
-                <div class="containerPassword child">
-                    <input type="password" required name="password" id="password" placeholder="Password" onfocusout="seleziona(3)" onfocus="seleziona(3)" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Deve contenere almeno un numero e almeno una lettera maiuscola e minuscola, e deve essere lunga almeno 8 caratteri">
-                    <span class="material-symbols-outlined" onclick="apriOccio(0)">visibility</span>
+                
+
+
+            <div class="containerNext">
+                <div class="nextBtn valido " onclick="swapView2(2)"><i class="fa-solid fa-arrow-left"></i> Prev</div>
+                        <div class="nextBtn submitBtn" onclick="submitForm()"> Iscriviti <i class="fa-solid fa-arrow-right"></i></div>
                 </div>
-
-                <div class="containerPassword child" style="margin-bottom: 15px;">
-                    <input type="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" name="Cpassword" id="Cpassword" placeholder="Conferma password" onfocusout="seleziona(4)" onfocus="seleziona(4)" title="Deve contenere almeno un numero e almeno una lettera maiuscola e minuscola, e deve essere lunga almeno 8 caratteri">
-                    <span class="material-symbols-outlined" onclick="apriOccio(1)">visibility</span>
-                </div>
-
-
-                <div class="containerNext">
-                    <div class="nextBtn valido " onclick="swapView2(2)"><i class="fa-solid fa-arrow-left"></i> Prev</div>
-                            <div class="nextBtn submitBtn" onclick="submitForm()"> Iscriviti <i class="fa-solid fa-arrow-right"></i></div>
-                    </div>
-                </div>
+            </div>
 
 
 

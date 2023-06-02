@@ -11,6 +11,7 @@ function openProfileMenu(){
 let inizio = true;
 let menu =  document.querySelector('header .menu');
 
+let disabilitaOggi = false;
 window.onload = () => {
     
     /* PROFILO --> MENU */
@@ -109,13 +110,23 @@ pulsanti[1].addEventListener("click", () => {       //aggiungi
         var divDaEscludere = document.querySelector('main .data .containerCalendario2');
         var btn = document.querySelector('main form .containerData');
         var targetElement = event.target;
-        console.log(btn.contains(targetElement) , (!divDaEscludere.contains(targetElement) && divDaEscludere.classList.length == 2))
+        if(divDaEscludere != null){
         if ( (!divDaEscludere.contains(targetElement) && divDaEscludere.classList.length == 2) || (btn.contains(targetElement))) {
             apriCalendario2();
         }
+        }
     });
     
+    /*controllo supero 22 calendario 2*/
 
+    if(new Date().getHours() >= 22){
+        disabilitaOggi = true;
+        document.getElementById('testoData').innerHTML = "Domani"
+        document.querySelectorAll('.mostraData').forEach(t => { t.innerHTML = "domani" })
+        aggiornaSelectDomani();
+        aggiornaMostraPartenza();
+    }
+    else disabilitaOggi = false;
 
 };
 
@@ -125,8 +136,6 @@ let mostraData = document.querySelectorAll('.mostraData')
 function apriCalendario2(){
     let calendario = document.querySelector('main form .data .containerCalendario2')
     calendario.classList.toggle('mostraElemento');
-
-    document.querySelector('.containerData .containerOrario').classList.toggle('mostraElemento')
 
     let testo = document.getElementById("testoData")
     
@@ -227,8 +236,6 @@ let grid = document.querySelectorAll('.data .sotto');
 let monthDisplay = document.querySelectorAll('.data .sopra .mese');
 let meseAvanti = [0,0];
 
-console.log(monthDisplay)
-
 
 let t = new Date();
 let date = ('0' + t.getDate()).slice(-2);
@@ -258,6 +265,8 @@ function setData(data,calendario){
     meseSelezionato[calendario] = Number(data[1]) - 1;
     year[calendario] = Number(data[0])
 
+    impostaData(calendario)
+
     let selezionaString =  giornoSelezionato[calendario] + " " + mesi[meseSelezionato[calendario]].abb;
 
     if(Number(giornoSelezionato[calendario]) == Number(date) && meseAvanti[calendario]==0 && annoCorrente[calendario] == year[calendario]) datePicker[calendario].innerHTML = "Oggi";
@@ -269,7 +278,7 @@ function setData(data,calendario){
         else sposta(-1)
     }
  
-    riempiCalendario(0)
+    riempiCalendario(calendario)
 }
 
 function abs(x){
@@ -300,7 +309,7 @@ function setAnno(anno,calendario){
 }
 
 
-
+     let dataCambiata = false;
 function riempiCalendario(calendario){
 
     monthDisplay[calendario].innerHTML = mesi[(Number(month)-1+meseAvanti[calendario])%12].nome;
@@ -334,11 +343,24 @@ function riempiCalendario(calendario){
             grid[calendario].innerHTML += '<div class="item"></div>';
         }
 
+        
         for(let i=1; i<mesi[(Number(month)-1+meseAvanti[calendario])%12].giorni+1; i++){
        
-            if(i < date && meseAvanti[calendario]==0 && annoCorrente[calendario] == year[calendario] ) grid[calendario].innerHTML += '<div class="item disabilita"><p>' + i + '</p></div>';
+            if(calendario == 1 && disabilitaOggi && i == date && meseAvanti[calendario] == 0 && annoCorrente[calendario] == year[calendario])grid[calendario].innerHTML += '<div class="item disabilita"><p>' + i + '</p></div>';    
+            else if(i < date && meseAvanti[calendario]==0 && annoCorrente[calendario] == year[calendario]) grid[calendario].innerHTML += '<div class="item disabilita"><p>' + i + '</p></div>';
             else if(i == giornoSelezionato[calendario] && meseSelezionato[calendario] == (Number(month)-1+meseAvanti[calendario])%12) grid[calendario].innerHTML += '<div class="item"><p class="selezionata" onclick="selezionaGiorno(this, '+ calendario +')">' + i + '</p></div>';
             else grid[calendario].innerHTML += '<div class="item"><p onclick="selezionaGiorno(this, ' + calendario + ')">' + i + '</p></div>';
+        }
+
+   
+        if(disabilitaOggi && !dataCambiata){
+
+            let stringData = year[0] + "-" + month + "-" + (Number(date)+1);
+            console.log(stringData)
+            dataCambiata = true;
+            setData(stringData ,1)
+
+            
         }
 
     // console.log("mese selezionato: " + meseSelezionato[calendario])
@@ -366,6 +388,133 @@ function impostaData(calendario){
 
 }
 
+function aggiornaSelect(){
+    let select = document.getElementById('selectPartenza');
+    select.innerHTML = '';
+
+    var oraLocale = new Date().getHours(); // Ottieni l'ora locale
+    let i = 0;
+    while(oraLocale + 1 != 24 && i!=2){
+        oraLocale++;
+        i++;
+      } 
+    var minutiLocale = new Date().getMinutes(); // Ottieni i minuti locali
+    minutiLocale = Math.floor(minutiLocale / 10) * 10;
+    var tempMin = minutiLocale;
+    if (minutiLocale == 0) minutiLocale = "0" + minutiLocale;
+
+    while (oraLocale <= 23 && tempMin <= 50) {
+    var option = document.createElement("option");
+    option.value = oraLocale + ":" + minutiLocale;
+    option.text = oraLocale + ":" + minutiLocale;
+    select.appendChild(option);
+
+    if (Number(minutiLocale) + 10 <= 50) minutiLocale = Number(minutiLocale) + 10;
+    else {
+        minutiLocale = "00";
+        oraLocale++;
+    }
+    }
+
+
+    /*select arrivo*/
+    let selectArrivo = document.getElementById('selectArrivo');
+    selectArrivo.innerHTML = '';
+
+    var oraArrivo = new Date().getHours();;
+    var minutiArrivo = new Date().getMinutes() // Ottieni i minuti locali
+    minutiArrivo = Math.floor(minutiArrivo / 10) * 10 + 10;
+    var tempMinArrivo = minutiArrivo;
+
+    if(minutiArrivo == 60){
+        minutiArrivo = "00";
+        oraArrivo++;
+        if(oraArrivo == 24) oraArrivo = "00";
+    }
+
+    while (oraArrivo <= 23 && tempMinArrivo <= 50) {
+    var option = document.createElement("option");
+    option.value = oraArrivo + ":" + minutiArrivo;
+    option.text = oraArrivo + ":" + minutiArrivo;
+    selectArrivo.appendChild(option);
+
+    if (Number(minutiArrivo) + 10 <= 50) minutiArrivo = Number(minutiArrivo) + 10;
+    else {
+        minutiArrivo = "00";
+        oraArrivo++;
+    }
+    }
+
+}
+
+
+function aggiornaSelectDomani(){
+    let select = document.getElementById('selectPartenza');
+    const autoSelectOra = "08";
+    const autoSelectMin = 0;
+    select.innerHTML = '';
+
+    var oraLocale = "00";
+    var minutiLocale = "00";
+    var tempOra = oraLocale;
+    var tempMin = minutiLocale;
+
+    while (oraLocale <= 23 && minutiLocale <= 50) {
+        var option = document.createElement("option");
+        option.value = oraLocale + ":" + minutiLocale;
+        option.text = oraLocale + ":" + minutiLocale;
+        if (oraLocale == autoSelectOra && minutiLocale == autoSelectMin) option.selected = true;
+
+        select.appendChild(option);
+    
+    if (Number(minutiLocale) + 10 <= 50) minutiLocale = Number(minutiLocale) + 10;
+    else {
+        minutiLocale = "00";
+        oraLocale++;
+        if (oraLocale < 10) {
+        oraLocale = "0" + oraLocale;
+        }
+    }
+    }   
+
+    /*select arrivo*/
+    let selectArrivo = document.getElementById('selectArrivo');
+    selectArrivo.innerHTML = '';
+
+    var oraArrivo = autoSelectOra;
+    var minutiArrivo = autoSelectMin + 10;
+    var tempMinArrivo = minutiArrivo;
+
+    while (oraArrivo <= 23 && tempMinArrivo <= 50) {
+    var option = document.createElement("option");
+    option.value = oraArrivo + ":" + minutiArrivo;
+    option.text = oraArrivo + ":" + minutiArrivo;
+    selectArrivo.appendChild(option);
+
+    if (Number(minutiArrivo) + 10 <= 50) minutiArrivo = Number(minutiArrivo) + 10;
+    else {
+        minutiArrivo = "00";
+        oraArrivo++;
+        if (oraArrivo < 10) {
+            oraArrivo = "0" + oraArrivo;
+        }
+    }
+    }
+}
+
+function aggiornaMostraPartenza(){
+
+    let mostraOraPartenza = document.querySelectorAll('.mostraOraPartenza')
+    let selezionaOraPartenza = document.getElementById('selectPartenza');
+    if(mostraOraPartenza != undefined && mostraOraPartenza != null){
+        mostraOraPartenza.forEach(t => {
+            t.innerHTML = "alle " + selezionaOraPartenza.value;
+        });
+    }
+}
+
+let domaniSelezionato = false; 
+if(disabilitaOggi) domaniSelezionato = true;
 function selezionaGiorno(n,calendario){
         
     giornoSelezionato[calendario] = n.innerHTML;
@@ -382,6 +531,27 @@ function selezionaGiorno(n,calendario){
     if(Number(n.innerHTML) == Number(date) && meseAvanti[calendario]==0 && annoCorrente[calendario] == year[calendario]) datePicker[calendario].innerHTML = "Oggi";
     else if( Number(n.innerHTML) == Number(date)+1 && meseAvanti[calendario]==0 && annoCorrente[calendario] == year[calendario]) datePicker[calendario].innerHTML = "Domani";
     else datePicker[calendario].innerHTML = selezionaString;
+
+
+    
+    if(calendario == 1){
+        if(Number(n.innerHTML) == Number(date) && meseAvanti[calendario]==0 && annoCorrente[calendario] == year[calendario]){      //se selezioni oggi
+            if(domaniSelezionato){
+                /*select partenza*/
+                aggiornaSelect();
+                domaniSelezionato = false;
+            }
+        }else{           
+            
+            if(!domaniSelezionato){
+                aggiornaSelectDomani();
+                domaniSelezionato = true;
+            }
+        }
+
+        aggiornaMostraPartenza()
+
+    }
 
 }
 
@@ -570,6 +740,6 @@ function apriAggiungiTraccia(){
     
 }
 
+setData(window.data,0)
 
-setData(window.data)
 

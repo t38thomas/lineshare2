@@ -2,9 +2,10 @@ let pulsanti = document.querySelectorAll('.containerScegli .destra span');
 let containerScegli = document.querySelector('header .centro .containerScegli')
 let nPostiA = document.querySelector('.containerScegli .numero');
 
-function aggiornaData(){
+function aggiornaData(data){
 
-    // document.querySelector('.inputData').value = 
+
+    console.log(data)
 
 }
 

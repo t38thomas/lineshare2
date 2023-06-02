@@ -4,6 +4,52 @@ let aggiungiBtn = containerPosti.querySelector('span:nth-child(3)')
 let numero = containerPosti.querySelector('.numero')
 let mostraNumero = document.querySelectorAll('.mostraNumero')
 let mostraPasseggeri = document.querySelectorAll('.mostraPasseggeri')
+let mostraOraPartenza = document.querySelectorAll('.mostraOraPartenza')
+let mostraOraArrivo = document.querySelectorAll('.mostraOraArrivo')
+
+let selezionaOraPartenza = document.getElementById('selectPartenza');
+let selezionaOraArrivo = document.getElementById('selectArrivo')
+
+selezionaOraPartenza.addEventListener("change", ()=>{
+    
+    mostraOraPartenza.forEach(t => {
+        t.innerHTML = "alle " + selezionaOraPartenza.value;
+    });
+
+
+    selezionaOraArrivo.innerHTML = '';
+
+
+    var t = selezionaOraPartenza.value.split(":");
+    var oraLocale = t[0];
+    var minutiLocale;
+    if(Number(t[1]) >= 50){
+      minutiLocale = "00";
+      if(oraLocale == 23) oraLocale = "00";
+      else oraLocale = Number(oraLocale) + 1;  
+    } 
+    else minutiLocale = Number(t[1]) + 10; 
+
+    var tempMin =  minutiLocale ;
+
+    while (oraLocale <= 23 && tempMin <= 50) {
+    var option = document.createElement("option");
+    option.value = oraLocale + ":" + minutiLocale;
+    option.text = oraLocale + ":" + minutiLocale;
+    selezionaOraArrivo.appendChild(option);
+
+    if (Number(minutiLocale) + 10 <= 50) minutiLocale = Number(minutiLocale) + 10;
+    else {
+        minutiLocale = "00";
+        oraLocale++;
+    }
+    }
+
+    mostraOraArrivo.forEach(t => {
+        t.innerHTML = selezionaOraArrivo.value;
+    })
+
+});
 
 function aggiungiPosto(n){
 

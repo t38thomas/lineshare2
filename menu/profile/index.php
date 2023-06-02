@@ -121,18 +121,6 @@
                 <div class='containerLinea'><div class='linea'></div></div>
             </div>
         </div>
-
-        <?php
-
-            if($_SESSION["guidatore"] == 0){ //se non è un guidatore
-
-            }
-            else{                             //se è un guidatore
-
-
-            }
-
-        ?>
         
     </div>
 

@@ -259,7 +259,6 @@ session_start();
     </script>
     <script src="/lineshare/header/js/app.js">
         setData(window.data)
-        alert(window.data)
     </script>  
     <script src="./js/app.js"></script>
 
