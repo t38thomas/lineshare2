@@ -60,7 +60,9 @@
         
     </div>
 
-    <form method="POST" action="./register.php">
+    <form method="POST" action="./php/aggiungiTraccia.php?partenza=<?php echo $partenza ?>&arrivo=<?php echo $arrivo?>">
+
+        
 
         <div class="bigContainer mostraCentro">
 
@@ -83,26 +85,12 @@
 
 
                 <div class="containerNext">
+                <div class="nextBtn valido " onclick="window.location.replace('/lineshare/');"><i class="fa-solid fa-arrow-left"></i> Home</div>
                 <div class="nextBtn valido" onclick="swapView2(1)">Next<i class="fa-solid fa-arrow-right"></i></div>
                 </div>
                 <div class="errore">
-                <?php
-
-                // if(isset($_GET["error"])){
-
-                // if ($_GET["error"] == "email_already_exists")
-                //     echo "<p> errore durante la registrazione: <br> email già registrata* <p>";
-                // else if ($_GET["error"] == "empty_input")
-                //     echo "<p> errore durante la registrazione: <br>gli input non sono riempiti* <p>";
-                // else if ($_GET["error"] == "registration_failed")
-                //     echo "<p> errore durante la registrazione:<br> registrazione fallita* <p>";
-                // else if ($_GET["error"] == "server_connection")
-                //     echo "<p> errore durante la registrazione:<br> connessione al server fallita* <p>";
-                // else if ($_GET["error"] == "uncorrect_password")
-                //     echo "<p> errore durante la registrazione:<br> le password non coincidono* <p>";
-
-                // }
-                ?>
+                    <input type="number" name="nPasseggeriField" id="nPasseggeriField" style="display: none;" max="8" min="1" value="4">
+                    <input type="number" name="costoTotaleField" id="costoTotaleField" style="display: none;" max="100" min="0" value="6.60" step="any">
                 </div>
             </div>
 
@@ -154,7 +142,7 @@
                 alle
             </div>
             <div class="centro sub-child">
-                <select id="selectPartenza">
+                <select id="selectPartenza" name="selectPartenza">
 
                 <?php
                     $oraLocale = date('H'); // Ottieni l'ora locale nel formato HH:MM:SS
@@ -202,7 +190,7 @@
                 Arriverò alle
             </div>
             <div class="centro sub-child">
-                <select id="selectArrivo">
+                <select id="selectArrivo" name="selectArrivo">
                 <?php
                     $oraLocale = date('H'); // Ottieni l'ora locale nel formato HH:MM:SS
                     $i = 0;
@@ -233,6 +221,11 @@
 
                         $tempArrivoOra = $oraLocale;
                         $tempArrivoMin = $minutiLocale - 10;
+                        if($tempArrivoMin < 0){
+                            $tempArrivoMin = 50;
+                            $tempArrivoOra--;
+                        }
+                        if($tempArrivoMin == 0) $tempArrivoMin = "00";
 
                     while($oraLocale <= 23 && $tempMin <= 50){
                         echo '<option value='.$oraLocale.':'.$minutiLocale.'>'.$oraLocale.':'.$minutiLocale.'</option>';
@@ -255,19 +248,29 @@
                 <div class="nextBtn valido " onclick="swapView2(1)"> <i class="fa-solid fa-arrow-left"></i> Prev</div>
                         <div class="nextBtn" onclick="swapView2(2)">Next <i class="fa-solid fa-arrow-right"></i></div>
                 </div>
-                <input type="text" name="data" id="data" style="display: none" class="inputData">  
+                <input type="date" name="dataField" id="dataField" style="display: none" class="inputData">  
         </div>
 
             <div class="bigContainer ">
             <h1 class="child">Andrò da <?php echo $partenza . " a " . $arrivo . ","; ?></h1>
             <h2 class="child" style="display: flex; justify-content: center; flex-wrap: wrap;">ho posto per <div class="mostraNumero">quattro</div> <div class="mostraPasseggeri">passeggeri </div> , &nbsp; <div class="mostraPartenza"> partirò</div> &nbsp; <div class="mostraData"> oggi</div>  &nbsp;  <div class="mostraOraPartenza"> alle <?php echo $tempOra . ":" . $tempMin ?> </div> &nbsp; e tornerò alle &nbsp; <div class="mostraOraArrivo"><?php echo $tempArrivoOra . ":" . $tempArrivoMin?></div>  </h2>
+            
+            <div class="containerPosti child" style="position: relative;">
+                <div class="sinistra sub-child">Sto pagando</div>
+                <div class="centro sub-child">
+                    <span class="material-symbols-outlined" onclick="selezionaCosto(-1)">remove_circle</span>
+                    <div class="costo">5€</div>
+                    <span class="material-symbols-outlined" onclick="selezionaCosto(1)">add_circle</span>
 
-                
+                </div>
+                <div class="destra sub-child" style="justify-content: center;">di carburante</div>
+                </div>
 
+                <span class="containerMostraCosto" style="text-align:center;"> <p style="color: var(--color-bianco); margin-top: -20px !important; padding: 0 10px;">Ai tuoi possibili passeggeri verrà mostrato un costo totale di &nbsp; <span class="mostraCostoPasseggeri" style="margin-top:20px"> 6,60€ </span>  </p></span>
 
-            <div class="containerNext">
+            <div class="containerNext" style="margin-top: 20px;">
                 <div class="nextBtn valido " onclick="swapView2(2)"><i class="fa-solid fa-arrow-left"></i> Prev</div>
-                        <div class="nextBtn submitBtn" onclick="submitForm()"> Iscriviti <i class="fa-solid fa-arrow-right"></i></div>
+                <div class="nextBtn submitBtn valido" onclick="submitForm()"> Pubblica <i class="fa-solid fa-arrow-right"></i></div>
                 </div>
             </div>
 

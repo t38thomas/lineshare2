@@ -77,7 +77,7 @@
                     else if($orario >= 12 && $orario < 18) echo "<p> Buon pomeriggio, ";
                     else if($orario >= 18) echo "<p> Buona sera, ";
                     
-                    echo  " <span style='font-weight:700;'>" . $_SESSION["nome"] . " </span>" . $_SESSION["cognome"] . "</p>";
+                    echo  "<span style='display: inline-block;'> <span style='font-weight:700;'>" . $_SESSION["nome"] . " </span>" . $_SESSION["cognome"] . "</span></p>";
                 ?>
             </div>
         </div>

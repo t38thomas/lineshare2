@@ -188,6 +188,77 @@ body{
 
 /*MAIN*/
 
+.rimuoviElemento{
+    opacity: 0;
+    pointer-events: none;
+    cursor: default;
+    z-index: -10;
+}
+
+main .containerPopUP {
+    width: 450px;
+    height: 250px;
+    position: fixed;
+    background: white;
+    border-radius: 20px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 20;
+    box-shadow: 5px 5px 43px 5px rgba(28,28,28,0.47);
+    transition: .5s;    
+    overflow: hidden;
+}
+
+main .containerPopUP i{
+    color: black;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+main .containerPopUP span:nth-child(2){
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translate(0,-50%);
+
+}
+
+main .containerPopUP .progressBar{
+    position: absolute;
+    background-color: var(--primary-200);
+    bottom: 0;
+    height: 20px;
+    width: 20px;
+    animation: progresso 8s linear 0.5s 1 normal forwards;
+    z-index: 25;
+
+}
+
+@keyframes progresso{
+    0%{
+      width: 20px;
+    }
+    100%{
+        width: 100%;
+    }
+  }
+
+main .containerPopUP h1{
+    text-align: center;
+    font-family: 'LEMONMILK', 'Sora';
+
+}
+
+main .containerPopUP p{
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
 .containerCarte{
     width: 100%;
     height: 275px;
@@ -530,6 +601,21 @@ body{
 
     .containerPercentuali > p{
         font-size: 40px;
+    }
+
+    main .containerPopUP {
+        width: 80%;
+        height: 250px;
+        position: fixed;
+        background: white;
+        border-radius: 20px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        z-index: 20;
+        box-shadow: 5px 5px 43px 5px rgba(28,28,28,0.47);
+        transition: .5s;    
+        overflow: hidden;
     }
   
 }

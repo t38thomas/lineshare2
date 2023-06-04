@@ -31,6 +31,25 @@
 
     <main>
 
+    <?php
+        if(isset($_GET["operation"])){
+            echo '<div class="containerPopUP"> <i class="fa-solid fa-xmark" onclick="chiudiPopUp()"></i> <span>';
+            if($_GET["operation"] != "success"){
+                echo '<h1>OOPS!</h1>';
+                if($_GET["operation"] == "error") echo "<p> c'è stato un errore durante la procedura. <br> Riprova più tardi. </p>";
+                if($_GET["operation"] == "TMDFSD") echo "<p> sembra che tu abbia superato il limite di viaggi aggiungibili per una stessa partenza. <br> Riprova con un altro luogo di partenza </p>";
+                if($_GET["operation"] == "TMD") echo "<p> sembra che tu abbia superato il limite di viaggi aggiungibili per la data di oggi. <br> Riprova con un altra data </p>";
+            }else{
+                echo '<h1>EVVAI!</h1>';
+                echo "<p> Il tuo passaggio è stato pubblicato correttamente. <br> puoi cercare lo stato del tuo passaggio tramite il pulsante Cerca traccia. </p>";
+            }
+
+
+            echo '</span><span class="progressBar"></span></div>';
+        }
+            
+       
+    ?>
         <div class="containerOnda">
             <img src="./home/assets/back.svg" alt="">
         </div>
@@ -88,5 +107,6 @@
   
     <script src="./general/js/app.js"></script>
     <script src="./header/js/app.js"></script>
+    <script src="./home/js/app.js"></script>
 </body>
 </html>

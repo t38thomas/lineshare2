@@ -107,11 +107,20 @@ main .containerWave img{
 .containerCard .containerGuidatore .destra .nome i{
     color:  var(--primary-300);
 }
-.containerCard .containerGuidatore .destra .stelle{
-    text-align: center;
+
+.containerCard .containerGuidatore .destra .nome p {
+    width: 100%;
+    text-align: left;
     position: absolute;
-    bottom: 20px;
-    z-index: 2;
+    padding-right: 30px;
+}
+
+.containerCard .containerGuidatore .destra .stelle{
+    width: 100%;
+    text-align: left;
+    position: absolute;
+    padding-right: 30px;
+    bottom: 10px;
 }
 
 .containerLinea{
@@ -234,7 +243,7 @@ main .containerWave img{
 .containerNposti{
     background-color: var(--primary-300);
     width: 140px;
-    height: 40px;
+    height: 30px;
     position: absolute;
     top: 0;
     border-radius: 20px;

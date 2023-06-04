@@ -58,7 +58,7 @@ session_start();
         and data = "'.$data.'"
         and nPasseggeri+"'.$nPosti.'" <= nMaxPasseggeri';
 
-        if(isset($_SESSION["id"])) $sql = $sql . " and idGuidatore <> " . $_SESSION["id"];
+        //if(isset($_SESSION["id"])) $sql = $sql . " and idGuidatore <> " . $_SESSION["id"];
 
         if($result = $connessione->query($sql)){
             if($result->num_rows > 0){
@@ -109,7 +109,7 @@ session_start();
                                         <span>'. $riga["nPasseggeri"] .'/'.$riga["nMaxPasseggeri"].' prenotati</span>  
                                     </div>
                                         <p>
-                                            <b>'. $guidatore["nome"] .'</b>
+                                            <b>'. $guidatore["nome"] .'</b><br>
                                             '.$guidatore["cognome"].'
                                          </p>
                                         <div class="stelle">
@@ -198,15 +198,6 @@ session_start();
                 </div>
             </div>
         </div>
-
-
-
-
-
-
-
-
-
                     ';
 
 

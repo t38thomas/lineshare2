@@ -125,6 +125,7 @@ pulsanti[1].addEventListener("click", () => {       //aggiungi
         document.querySelectorAll('.mostraData').forEach(t => { t.innerHTML = "domani" })
         aggiornaSelectDomani();
         aggiornaMostraPartenza();
+        aggiornaMostraArrivo();
     }
     else disabilitaOggi = false;
 
@@ -402,7 +403,8 @@ function aggiornaSelect(){
     minutiLocale = Math.floor(minutiLocale / 10) * 10;
     var tempMin = minutiLocale;
     if (minutiLocale == 0) minutiLocale = "0" + minutiLocale;
-
+    if(oraLocale < 10) oraLocale = "0" + oraLocale;
+    
     while (oraLocale <= 23 && tempMin <= 50) {
     var option = document.createElement("option");
     option.value = oraLocale + ":" + minutiLocale;
@@ -412,8 +414,10 @@ function aggiornaSelect(){
     if (Number(minutiLocale) + 10 <= 50) minutiLocale = Number(minutiLocale) + 10;
     else {
         minutiLocale = "00";
-        oraLocale++;
+        oraLocale++; 
+        if(oraLocale < 10) oraLocale = "0" + oraLocale;
     }
+
     }
 
 
@@ -421,27 +425,37 @@ function aggiornaSelect(){
     let selectArrivo = document.getElementById('selectArrivo');
     selectArrivo.innerHTML = '';
 
-    var oraArrivo = new Date().getHours();;
+    var oraArrivo = new Date().getHours();
+    i = 0;
+    while (oraArrivo + 1 !== 24 && i !== 2) {
+    oraArrivo++;
+    i++;
+    }
     var minutiArrivo = new Date().getMinutes() // Ottieni i minuti locali
     minutiArrivo = Math.floor(minutiArrivo / 10) * 10 + 10;
-    var tempMinArrivo = minutiArrivo;
+
+    if (minutiArrivo == 0) minutiArrivo = "0" + minutiArrivo;
 
     if(minutiArrivo == 60){
         minutiArrivo = "00";
         oraArrivo++;
         if(oraArrivo == 24) oraArrivo = "00";
     }
+    if(oraArrivo < 10) oraArrivo = "0" + oraArrivo;
+    console.log(Number(oraArrivo))
 
-    while (oraArrivo <= 23 && tempMinArrivo <= 50) {
+    while (Number(oraArrivo) <= 23 && Number(minutiArrivo) <= 50) {
     var option = document.createElement("option");
     option.value = oraArrivo + ":" + minutiArrivo;
     option.text = oraArrivo + ":" + minutiArrivo;
+    console.log(option)
     selectArrivo.appendChild(option);
 
     if (Number(minutiArrivo) + 10 <= 50) minutiArrivo = Number(minutiArrivo) + 10;
     else {
         minutiArrivo = "00";
         oraArrivo++;
+        if(oraArrivo < 10) oraArrivo = "0" + oraArrivo;
     }
     }
 
@@ -513,6 +527,17 @@ function aggiornaMostraPartenza(){
     }
 }
 
+function aggiornaMostraArrivo(){
+
+    let mostraOraArrivo = document.querySelectorAll('.mostraOraArrivo')
+    let selezionaOraArrivo = document.getElementById('selectArrivo');
+    if(mostraOraArrivo != undefined && mostraOraArrivo != null){
+        mostraOraArrivo.forEach(t => {
+            t.innerHTML = selezionaOraArrivo.value;
+        });
+    }
+}
+
 let domaniSelezionato = false; 
 if(disabilitaOggi) domaniSelezionato = true;
 function selezionaGiorno(n,calendario){
@@ -550,7 +575,7 @@ function selezionaGiorno(n,calendario){
         }
 
         aggiornaMostraPartenza()
-
+        aggiornaMostraArrivo()
     }
 
 }

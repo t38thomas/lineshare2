@@ -1,3 +1,7 @@
+html{
+    max-height: 100%;
+}
+
 .containerPosti{
     height: 67px;
     width: 550px;
@@ -13,6 +17,11 @@
     transition: .25s;
     display: flex;
     
+}
+
+
+.BigSinistra{
+    min-height: 600px !important;
 }
 
 .mostraNumero{
@@ -37,7 +46,7 @@
     
 }
 
-.containerPosti .centro .numero{
+.containerPosti .centro .numero, .containerPosti .centro .costo{
 
     font-size: 30px;
 
@@ -70,7 +79,7 @@ main form .containerData{
 
 main form .data{
     cursor: pointer;
-    width: 100%;
+    width: 150px;
     height: 100%;
     border: 1px solid lightgray;
     position: relative;
@@ -299,4 +308,61 @@ main select{
         outline: none;
         cursor: pointer;
         border: 1px solid lightgray;
+}
+
+main .containerPosti .containerMostraCosto{
+    position: absolute;
+    top: 60px;
+    color: var(--color-bianco);
+    display: flex;
+    width: max-content;
+    justify-content: center;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+main .containerPosti .containerMostraCosto span{
+    font-weight: bold;
+}
+
+
+@media screen and (max-width: 768px){      
+
+
+    main .containerPosti{
+        width: 70% !important;
+    
+    }
+
+    .containerPosti .centro span{
+        font-size: 25px !important; 
+        margin: 0 7px !important;
+    }
+
+
+    .containerPosti .centro .numero, .containerPosti .centro .costo{ 
+        font-size: 20px !important;
+    }
+    
+    main .containerPosti .sub-child{
+        white-space: nowrap;
+    }
+
+    .containerPosti > .destra{
+        justify-content: center;
+    }
+}
+
+/* telefono */
+@media screen and (max-width: 480px){
+  
+    main .containerPosti .sub-child{
+        font-size: 14px;
+    }
+
+    .containerPosti .centro span{
+        margin: 0 3px !important;
+        font-size: 17px !important;
+    }
+  
 }

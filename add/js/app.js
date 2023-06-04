@@ -1,14 +1,35 @@
+let dataField = document.getElementById('dataField');
+dataField.valueAsDate = new Date();
+
+
 let containerPosti = document.querySelector('main .containerPosti');
-let rimuoviBtn = containerPosti.querySelector('span:nth-child(1)')
-let aggiungiBtn = containerPosti.querySelector('span:nth-child(3)')
+
+let pulsanti = document.querySelectorAll('main .containerPosti span');
+let rimuoviBtn = pulsanti[0];
+let aggiungiBtn = pulsanti[1];
 let numero = containerPosti.querySelector('.numero')
 let mostraNumero = document.querySelectorAll('.mostraNumero')
 let mostraPasseggeri = document.querySelectorAll('.mostraPasseggeri')
 let mostraOraPartenza = document.querySelectorAll('.mostraOraPartenza')
 let mostraOraArrivo = document.querySelectorAll('.mostraOraArrivo')
+let ritornoAutista = document.querySelector('.costo');
+let mostraCostoPasseggeri = document.querySelector('.mostraCostoPasseggeri')
+let rimuoviCostoBtn = pulsanti[3];
+let aggiungiCostoBtn = pulsanti[4];
+let costoTotalePasseggero = 0;
+
 
 let selezionaOraPartenza = document.getElementById('selectPartenza');
 let selezionaOraArrivo = document.getElementById('selectArrivo')
+
+let nPasseggeriField = document.getElementById('nPasseggeriField');
+let costoTotaleField = document.getElementById('costoTotaleField');
+
+selezionaOraArrivo.addEventListener("change", ()=>{
+    mostraOraArrivo.forEach(t => {
+        t.innerHTML = selezionaOraArrivo.value;
+    })
+})
 
 selezionaOraPartenza.addEventListener("change", ()=>{
     
@@ -17,9 +38,9 @@ selezionaOraPartenza.addEventListener("change", ()=>{
     });
 
 
-    selezionaOraArrivo.innerHTML = '';
+        selezionaOraArrivo.innerHTML = '';
 
-
+    
     var t = selezionaOraPartenza.value.split(":");
     var oraLocale = t[0];
     var minutiLocale;
@@ -29,6 +50,7 @@ selezionaOraPartenza.addEventListener("change", ()=>{
       else oraLocale = Number(oraLocale) + 1;  
     } 
     else minutiLocale = Number(t[1]) + 10; 
+    prevArrivo = oraLocale + ":" + minutiLocale;
 
     var tempMin =  minutiLocale ;
 
@@ -42,21 +64,90 @@ selezionaOraPartenza.addEventListener("change", ()=>{
     else {
         minutiLocale = "00";
         oraLocale++;
+        if(oraLocale < 10) oraLocale = "0" + oraLocale;
     }
     }
 
+    
     mostraOraArrivo.forEach(t => {
         t.innerHTML = selezionaOraArrivo.value;
     })
+    
 
 });
 
+function selezionaCosto(n){
+    if(ritornoAutista.innerHTML == "gratis") ritornoAutista.innerHTML = "0";
+    else ritornoAutista.innerHTML = String(ritornoAutista.innerHTML).slice(0,-1);
+    if(n == 1){
+        
+        if(Number(ritornoAutista.innerHTML) + 1 < 101){
+            costoTotaleField.value = calcolaCosto(Number(ritornoAutista.innerHTML) + 1, false);
+            mostraCostoPasseggeri.innerHTML = calcolaCosto(Number(ritornoAutista.innerHTML) + 1, true) + "€"
+            ritornoAutista.innerHTML = (Number(ritornoAutista.innerHTML) + 1) + "€";
+            rimuoviCostoBtn.classList.remove('disabilita') 
+            if(Number(ritornoAutista.innerHTML) == 100) aggiungiCostoBtn.classList.add('disabilita')
+        }else aggiungiCostoBtn.classList.add('disabilita')
+    }else{
+        if(Number(ritornoAutista.innerHTML) - 1 >= 0){
+            
+           
+            ritornoAutista.innerHTML = (Number(ritornoAutista.innerHTML) - 1);
+            mostraCostoPasseggeri.innerHTML = calcolaCosto(Number(ritornoAutista.innerHTML), true) + "€"
+            costoTotaleField.value = calcolaCosto(Number(ritornoAutista.innerHTML), false);
+
+            aggiungiCostoBtn.classList.remove('disabilita') 
+            if(Number(ritornoAutista.innerHTML) == 0){
+              rimuoviCostoBtn.classList.add('disabilita')  
+              ritornoAutista.innerHTML = "gratis"
+            }else ritornoAutista.innerHTML += "€";
+        }else rimuoviCostoBtn.classList.add('disabilita')
+    }
+
+    
+}
+
+function calcolaCosto(z,usaVirgola){
+
+    const PGPS = 25; //percentuale di guadagno sul prezzo stimato
+    const PIVA = 22; //percentuale iva
+
+    let guadagno = z * PGPS / 100; 
+    let iva = guadagno * PIVA / 100;
+
+    let prezzoTotale = z + guadagno + iva;
+
+    
+
+    return formatNumber(prezzoTotale,usaVirgola);
+
+}
+
+function formatNumber(number,usaVirgola) {
+    // Arrotondamento per eccesso
+    if(usaVirgola){
+    var roundedNumber = Math.ceil(number * 10) / 10;
+  
+    // Formattazione con virgola per i decimali
+    var formattedNumber = roundedNumber.toLocaleString('it-IT', {
+      minimumFractionDigits: 1,
+      maximumFractionDigits: 1
+    });
+    }
+    else{
+        var formattedNumber;
+        if(Math.floor(number) !== number )  formattedNumber = Math.ceil(number * 10) / 10;
+        else formattedNumber = number + ".0";
+    } 
+  
+    return formattedNumber + "0";
+  }
+
 function aggiungiPosto(n){
-
-
     if(n == 1){
         if(Number(numero.innerHTML) + 1 < 9){
           numero.innerHTML = Number(numero.innerHTML) + 1;  
+          nPasseggeriField.value = numero.innerHTML;
           mostraNumero.forEach(t => {
             if(Number(numero.innerHTML) == 1){
                 t.innerHTML = "un"; 
@@ -85,6 +176,7 @@ function aggiungiPosto(n){
     if(n == -1){
         if(Number(numero.innerHTML) - 1 > 0){
           numero.innerHTML = Number(numero.innerHTML) - 1;  
+          nPasseggeriField.value = numero.innerHTML;
           mostraNumero.forEach(t => {
             if(Number(numero.innerHTML) == 1){
                 t.innerHTML = "un"; 
@@ -114,10 +206,6 @@ function aggiungiPosto(n){
         else rimuoviBtn.classList.add('disabilita')
     }
 }
-
-
-
-
 
 
 let acceso = false;
@@ -206,5 +294,23 @@ function swapView2(n) {
     });
 
 
+
+}
+
+function submitForm(){
+    let form = document.querySelector('main form');
+    let valido = true;
+    let inputs = form.querySelectorAll('input')
+    inputs.forEach(t => {
+        if(!t.checkValidity()) valido = false; 
+        console.log(valido, t.value, t)
+    })
+
+    let selects = form.querySelectorAll('select');
+    selects.forEach(t => {
+        if(!t.checkValidity()) valido = false; 
+    })
+
+    if(valido && selects[0].value < selects[1].value) form.submit();
 
 }
