@@ -46,7 +46,7 @@ body{
 }
 
 .containerOnda{
-    height: 6480px;
+    height: 1080px;
     width: 100%;
 }
 
@@ -331,6 +331,7 @@ main .containerPopUP p{
     /* box-shadow: 5px 5px 43px 5px rgba(28,28,28,0.47); */
     border-radius: 20px;
     transition: width .25s;
+    padding-bottom: 200px;
 }
 
 .containerPercentuali .item{

@@ -52,7 +52,7 @@
        
     ?>
         <div class="containerOnda">
-            <img src="./home/assets/back.svg" alt="">
+            <img src="./home/assets/back2.svg" alt="">
         </div>
 
         <div class="containerCarte">
