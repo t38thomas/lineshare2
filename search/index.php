@@ -56,7 +56,9 @@ session_start();
         and arrivo = "'.$arrivo.'"
         and nPasseggeri < nMaxPasseggeri 
         and data = "'.$data.'"
-        and nPasseggeri+"'.$nPosti.'" <= nMaxPasseggeri';
+        and nPasseggeri+"'.$nPosti.'" <= nMaxPasseggeri
+        order by (prezzoTotale/(nPasseggeri+1)) asc
+        ';
 
         //if(isset($_SESSION["id"])) $sql = $sql . " and idGuidatore <> " . $_SESSION["id"];
 

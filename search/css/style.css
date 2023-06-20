@@ -409,7 +409,7 @@ header .containerScegli:hover{
 
 .containerNonTrovato .sotto{
     font-size: 20px;
-  
+    white-space: nowrap;
 }
 
 @media screen and (max-width: 1300px){

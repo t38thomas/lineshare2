@@ -26,15 +26,12 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
                 $_SESSION['cognome'] = $row['cognome'];
                 $_SESSION['email'] = $row['email'];
                 $_SESSION['password'] = $row['pass'];
-                $_SESSION['guidatore'] = $row['guidatore'];
 
                 if(isset($row["fotoProfilo"]) && $row["fotoProfilo"] != null){
                     $_SESSION['foto'] = $row['fotoProfilo'];
                 }
 
-
                 $_SESSION['loggato'] = true;
-
 
                 header("location: ../../");
             } else {

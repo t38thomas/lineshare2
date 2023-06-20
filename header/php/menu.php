@@ -4,22 +4,22 @@
             
             echo "
             
-                <a href='' class='element'>
+                <a href='/lineshare/index.php?operation=WIP' class='element'>
                     <p><i class='fa-regular fa-map'></i>Viaggi</p>
                     <i class='material-symbols-outlined'> arrow_forward_ios </i>
                 </a>
 
-                <a href='' class='element'>
+                <a href='/lineshare/index.php?operation=WIP' class='element'>
                     <p><i class='fa-regular fa-comments'></i> Messaggi</p>
                     <i class='material-symbols-outlined'> arrow_forward_ios </i>
                 </a>
 
-                <a href='' class='element'>
+                <a href='/lineshare/index.php?operation=WIP' class='element'>
                     <p><i class='fa-regular fa-credit-card'></i>Saldo</p>
                     <i class='material-symbols-outlined'> arrow_forward_ios  </i> 
                 </a>
 
-                <a href='' class='element'>
+                <a href='/lineshare/index.php?operation=WIP' class='element'>
                     <p><i class='fa-regular fa-circle-question'></i>Assistenza</p>
                     <i class='material-symbols-outlined'> arrow_forward_ios </i>
                 </a>

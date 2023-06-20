@@ -110,14 +110,16 @@ function selezionaCosto(n){
 function calcolaCosto(z,usaVirgola){
 
     const PGPS = 25; //percentuale di guadagno sul prezzo stimato
-    const PIVA = 22; //percentuale iva
+    const PIVA = 0; //percentuale iva
 
     let guadagno = z * PGPS / 100; 
     let iva = guadagno * PIVA / 100;
 
     let prezzoTotale = z + guadagno + iva;
 
-    
+    console.log(prezzoTotale)
+
+    if(prezzoTotale == 0) prezzoTotale = 0.20;
 
     return formatNumber(prezzoTotale,usaVirgola);
 

@@ -39,6 +39,7 @@
                 if($_GET["operation"] == "error") echo "<p> c'è stato un errore durante la procedura. <br> Riprova più tardi. </p>";
                 if($_GET["operation"] == "TMDFSD") echo "<p> sembra che tu abbia superato il limite di viaggi aggiungibili per una stessa partenza. <br> Riprova con un altro luogo di partenza </p>";
                 if($_GET["operation"] == "TMD") echo "<p> sembra che tu abbia superato il limite di viaggi aggiungibili per la data di oggi. <br> Riprova con un altra data </p>";
+                if($_GET["operation"] == "WIP") echo "<p> sembra che tu voglia accedere a un contenuto work in progress! </p>";
             }else{
                 echo '<h1>EVVAI!</h1>';
                 echo "<p> Il tuo passaggio è stato pubblicato correttamente. <br> puoi cercare lo stato del tuo passaggio tramite il pulsante Cerca traccia. </p>";
